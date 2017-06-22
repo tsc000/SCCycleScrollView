@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'SCCycleScrollViewKit'
-  s.version      = '0.1.1'
+  s.version      = '0.1.2'
   s.summary      = 'A fast, lightweight carousel figure.'
   s.description  = 'A fast, lightweight carousel figure, which is based on UICollectionView.'
   s.homepage     = 'https://github.com/tsc000'

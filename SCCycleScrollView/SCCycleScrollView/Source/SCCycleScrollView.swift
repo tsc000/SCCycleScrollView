@@ -154,7 +154,7 @@ open class SCCycleScrollView: UIView {
     ///   - titleArray: 文字数据源,默认值nil
     ///   - placeholderImage: 占位图片
     /// - Returns: 返回SCCycleScrollView对象
-    class func cycleScrollView(frame: CGRect, delegate: SCCycleScrollViewDelegate?, imageArray: [AnyObject]? = nil, titleArray: [String]? = [], placeholderImage: UIImage?) -> SCCycleScrollView {
+    open class func cycleScrollView(frame: CGRect, delegate: SCCycleScrollViewDelegate?, imageArray: [AnyObject]? = nil, titleArray: [String]? = [], placeholderImage: UIImage?) -> SCCycleScrollView {
         
         let cycleScrollView = SCCycleScrollView(frame: frame)
         
@@ -178,7 +178,7 @@ open class SCCycleScrollView: UIView {
     ///   - delegate: SCCycleScrollView代理
     ///   - titleArray: 文字数据源,默认值nil
     /// - Returns: 返回SCCycleScrollView对象
-    class func cycleScrollView(frame: CGRect, delegate: SCCycleScrollViewDelegate, titleArray: [String]? = []) -> SCCycleScrollView {
+    open class func cycleScrollView(frame: CGRect, delegate: SCCycleScrollViewDelegate, titleArray: [String]? = []) -> SCCycleScrollView {
         
         let cycleScrollView = SCCycleScrollView(frame: frame)
         
