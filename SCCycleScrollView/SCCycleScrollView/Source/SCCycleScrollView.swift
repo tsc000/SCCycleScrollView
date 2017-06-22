@@ -490,7 +490,7 @@ extension SCCycleScrollView: UIScrollViewDelegate {
     }
 }
 
-@objc protocol SCCycleScrollViewDelegate: NSObjectProtocol {
+ @objc public protocol SCCycleScrollViewDelegate: NSObjectProtocol {
     
     @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didSelectItemAt index: Int)
     
