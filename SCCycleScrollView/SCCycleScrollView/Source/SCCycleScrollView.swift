@@ -13,7 +13,7 @@ enum CycleScrollViewCellType: String{
     case OnlyTitle = "只有文字"
 }
 
-class SCCycleScrollView: UIView {
+open class SCCycleScrollView: UIView {
     
     //////////////////////  私有属性  //////////////////////
     
@@ -191,7 +191,7 @@ class SCCycleScrollView: UIView {
         return cycleScrollView
     }
     
-    override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         if cellType == .Image {
@@ -385,7 +385,7 @@ class SCCycleScrollView: UIView {
         setupUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
@@ -393,14 +393,14 @@ class SCCycleScrollView: UIView {
 //MARK: - UICollectionViewDataSource UICollectionViewDataSource
 extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let count = cellType == .Image ? (internalImageArray!.count) : (internalTitleArray!.count)
         
         return count * cycleCount
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SCCycleScrollViewID, for: indexPath) as! SCCycleScrollViewCell
         
@@ -446,7 +446,7 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let count = cellType == .Image ? (internalImageArray!.count) : (internalTitleArray!.count)
         
@@ -457,7 +457,7 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
 //MARK: - UIScrollViewDelegate
 extension SCCycleScrollView: UIScrollViewDelegate {
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if scrollDirection == .horizontal {
             currentPage = Int((scrollView.contentOffset.x + scrollView.frame.width / 2.0) / scrollView.frame.width)
@@ -471,16 +471,16 @@ extension SCCycleScrollView: UIScrollViewDelegate {
         
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         invalidateTimer()
     }
     
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         setupTimer()
     }
     
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         
         let count = cellType == .Image ? (internalImageArray!.count) : (internalTitleArray!.count)
         
