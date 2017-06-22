@@ -1,0 +1,753 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		32E68B908621F855ED21CE01 /* Pods_SCCycleScrollViewTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAF382084F4A0AE42AD1679F /* Pods_SCCycleScrollViewTests.framework */; };
+		595400F21EF76C670072C103 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595400F11EF76C670072C103 /* AppDelegate.swift */; };
+		595400F41EF76C670072C103 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595400F31EF76C670072C103 /* ViewController.swift */; };
+		595400F71EF76C670072C103 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 595400F51EF76C670072C103 /* Main.storyboard */; };
+		595400F91EF76C670072C103 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 595400F81EF76C670072C103 /* Assets.xcassets */; };
+		595400FC1EF76C670072C103 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 595400FA1EF76C670072C103 /* LaunchScreen.storyboard */; };
+		595401071EF76C670072C103 /* SCCycleScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595401061EF76C670072C103 /* SCCycleScrollViewTests.swift */; };
+		595401121EF76C670072C103 /* SCCycleScrollViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595401111EF76C670072C103 /* SCCycleScrollViewUITests.swift */; };
+		595401511EF773D10072C103 /* SCCycleScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595401501EF773D10072C103 /* SCCycleScrollView.swift */; };
+		595401531EF773EB0072C103 /* SCCycleScrollViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595401521EF773EB0072C103 /* SCCycleScrollViewCell.swift */; };
+		59DD17CA1EFA71280006B52A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DD17C91EFA71280006B52A /* SecondViewController.swift */; };
+		7B673F0BF9B47560FC9BB7BA /* Pods_SCCycleScrollViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C41B4DBF54665CEC71235B /* Pods_SCCycleScrollViewUITests.framework */; };
+		B2EA6C81C1DA729ECF9CA1C8 /* Pods_SCCycleScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC6909A00FDCC62D75C98DA /* Pods_SCCycleScrollView.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		595401031EF76C670072C103 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 595400E61EF76C670072C103 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 595400ED1EF76C670072C103;
+			remoteInfo = SCCycleScrollView;
+		};
+		5954010E1EF76C670072C103 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 595400E61EF76C670072C103 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 595400ED1EF76C670072C103;
+			remoteInfo = SCCycleScrollView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C059A38962FE1AB7BFC1698 /* Pods-SCCycleScrollViewUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollViewUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollViewUITests/Pods-SCCycleScrollViewUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2D4C97A61AF1349722903338 /* Pods-SCCycleScrollViewUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollViewUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollViewUITests/Pods-SCCycleScrollViewUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		595400EE1EF76C670072C103 /* SCCycleScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SCCycleScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		595400F11EF76C670072C103 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		595400F31EF76C670072C103 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		595400F61EF76C670072C103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		595400F81EF76C670072C103 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		595400FB1EF76C670072C103 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		595400FD1EF76C670072C103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		595401021EF76C670072C103 /* SCCycleScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCCycleScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		595401061EF76C670072C103 /* SCCycleScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCycleScrollViewTests.swift; sourceTree = "<group>"; };
+		595401081EF76C670072C103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5954010D1EF76C670072C103 /* SCCycleScrollViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SCCycleScrollViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		595401111EF76C670072C103 /* SCCycleScrollViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SCCycleScrollViewUITests.swift; sourceTree = "<group>"; };
+		595401131EF76C670072C103 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		595401501EF773D10072C103 /* SCCycleScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCycleScrollView.swift; sourceTree = "<group>"; };
+		595401521EF773EB0072C103 /* SCCycleScrollViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCCycleScrollViewCell.swift; sourceTree = "<group>"; };
+		59DD17C91EFA71280006B52A /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		710A8374181DC1B902B86603 /* Pods-SCCycleScrollView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollView/Pods-SCCycleScrollView.debug.xcconfig"; sourceTree = "<group>"; };
+		82C41B4DBF54665CEC71235B /* Pods_SCCycleScrollViewUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCCycleScrollViewUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAF382084F4A0AE42AD1679F /* Pods_SCCycleScrollViewTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCCycleScrollViewTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AEC6909A00FDCC62D75C98DA /* Pods_SCCycleScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCCycleScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE499169066A039BF1288527 /* Pods-SCCycleScrollViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollViewTests/Pods-SCCycleScrollViewTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E2734DFF92375AA07383E473 /* Pods-SCCycleScrollViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollViewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollViewTests/Pods-SCCycleScrollViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollView.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollView/Pods-SCCycleScrollView.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		595400EB1EF76C670072C103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2EA6C81C1DA729ECF9CA1C8 /* Pods_SCCycleScrollView.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		595400FF1EF76C670072C103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32E68B908621F855ED21CE01 /* Pods_SCCycleScrollViewTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5954010A1EF76C670072C103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B673F0BF9B47560FC9BB7BA /* Pods_SCCycleScrollViewUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		355170289D5502FCD2DE9D4A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEC6909A00FDCC62D75C98DA /* Pods_SCCycleScrollView.framework */,
+				AAF382084F4A0AE42AD1679F /* Pods_SCCycleScrollViewTests.framework */,
+				82C41B4DBF54665CEC71235B /* Pods_SCCycleScrollViewUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		595400E51EF76C670072C103 = {
+			isa = PBXGroup;
+			children = (
+				595400F01EF76C670072C103 /* SCCycleScrollView */,
+				595401051EF76C670072C103 /* SCCycleScrollViewTests */,
+				595401101EF76C670072C103 /* SCCycleScrollViewUITests */,
+				595400EF1EF76C670072C103 /* Products */,
+				7BCFF3AEFD852E50FB744F85 /* Pods */,
+				355170289D5502FCD2DE9D4A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		595400EF1EF76C670072C103 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				595400EE1EF76C670072C103 /* SCCycleScrollView.app */,
+				595401021EF76C670072C103 /* SCCycleScrollViewTests.xctest */,
+				5954010D1EF76C670072C103 /* SCCycleScrollViewUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		595400F01EF76C670072C103 /* SCCycleScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				5954011F1EF76E490072C103 /* Source */,
+				595400F11EF76C670072C103 /* AppDelegate.swift */,
+				595400F31EF76C670072C103 /* ViewController.swift */,
+				595400F51EF76C670072C103 /* Main.storyboard */,
+				595400F81EF76C670072C103 /* Assets.xcassets */,
+				595400FA1EF76C670072C103 /* LaunchScreen.storyboard */,
+				595400FD1EF76C670072C103 /* Info.plist */,
+				59DD17C91EFA71280006B52A /* SecondViewController.swift */,
+			);
+			path = SCCycleScrollView;
+			sourceTree = "<group>";
+		};
+		595401051EF76C670072C103 /* SCCycleScrollViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				595401061EF76C670072C103 /* SCCycleScrollViewTests.swift */,
+				595401081EF76C670072C103 /* Info.plist */,
+			);
+			path = SCCycleScrollViewTests;
+			sourceTree = "<group>";
+		};
+		595401101EF76C670072C103 /* SCCycleScrollViewUITests */ = {
+			isa = PBXGroup;
+			children = (
+				595401111EF76C670072C103 /* SCCycleScrollViewUITests.swift */,
+				595401131EF76C670072C103 /* Info.plist */,
+			);
+			path = SCCycleScrollViewUITests;
+			sourceTree = "<group>";
+		};
+		5954011F1EF76E490072C103 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				595401501EF773D10072C103 /* SCCycleScrollView.swift */,
+				595401521EF773EB0072C103 /* SCCycleScrollViewCell.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7BCFF3AEFD852E50FB744F85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				710A8374181DC1B902B86603 /* Pods-SCCycleScrollView.debug.xcconfig */,
+				EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */,
+				DE499169066A039BF1288527 /* Pods-SCCycleScrollViewTests.debug.xcconfig */,
+				E2734DFF92375AA07383E473 /* Pods-SCCycleScrollViewTests.release.xcconfig */,
+				2D4C97A61AF1349722903338 /* Pods-SCCycleScrollViewUITests.debug.xcconfig */,
+				1C059A38962FE1AB7BFC1698 /* Pods-SCCycleScrollViewUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		595400ED1EF76C670072C103 /* SCCycleScrollView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 595401161EF76C670072C103 /* Build configuration list for PBXNativeTarget "SCCycleScrollView" */;
+			buildPhases = (
+				2F925891B51572901A57B1FA /* [CP] Check Pods Manifest.lock */,
+				595400EA1EF76C670072C103 /* Sources */,
+				595400EB1EF76C670072C103 /* Frameworks */,
+				595400EC1EF76C670072C103 /* Resources */,
+				A7D5D49B5D073E69C2B5B8B3 /* [CP] Embed Pods Frameworks */,
+				396CA5F8DD3ACB3E5CF06208 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SCCycleScrollView;
+			productName = SCCycleScrollView;
+			productReference = 595400EE1EF76C670072C103 /* SCCycleScrollView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		595401011EF76C670072C103 /* SCCycleScrollViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 595401191EF76C670072C103 /* Build configuration list for PBXNativeTarget "SCCycleScrollViewTests" */;
+			buildPhases = (
+				379FA3548808E6A03ACDF9F4 /* [CP] Check Pods Manifest.lock */,
+				595400FE1EF76C670072C103 /* Sources */,
+				595400FF1EF76C670072C103 /* Frameworks */,
+				595401001EF76C670072C103 /* Resources */,
+				62A383FCF0BBB43B7162EF2A /* [CP] Embed Pods Frameworks */,
+				D81B576BA7C05B06DB30502B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				595401041EF76C670072C103 /* PBXTargetDependency */,
+			);
+			name = SCCycleScrollViewTests;
+			productName = SCCycleScrollViewTests;
+			productReference = 595401021EF76C670072C103 /* SCCycleScrollViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5954010C1EF76C670072C103 /* SCCycleScrollViewUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5954011C1EF76C670072C103 /* Build configuration list for PBXNativeTarget "SCCycleScrollViewUITests" */;
+			buildPhases = (
+				BB09A6069C4033EB560B0D23 /* [CP] Check Pods Manifest.lock */,
+				595401091EF76C670072C103 /* Sources */,
+				5954010A1EF76C670072C103 /* Frameworks */,
+				5954010B1EF76C670072C103 /* Resources */,
+				C222FBF418D2023441916198 /* [CP] Embed Pods Frameworks */,
+				83C020750104130F897655B8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5954010F1EF76C670072C103 /* PBXTargetDependency */,
+			);
+			name = SCCycleScrollViewUITests;
+			productName = SCCycleScrollViewUITests;
+			productReference = 5954010D1EF76C670072C103 /* SCCycleScrollViewUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		595400E61EF76C670072C103 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "童世超";
+				TargetAttributes = {
+					595400ED1EF76C670072C103 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = SP9H6353S3;
+						ProvisioningStyle = Automatic;
+					};
+					595401011EF76C670072C103 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = SP9H6353S3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 595400ED1EF76C670072C103;
+					};
+					5954010C1EF76C670072C103 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = SP9H6353S3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 595400ED1EF76C670072C103;
+					};
+				};
+			};
+			buildConfigurationList = 595400E91EF76C670072C103 /* Build configuration list for PBXProject "SCCycleScrollView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 595400E51EF76C670072C103;
+			productRefGroup = 595400EF1EF76C670072C103 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				595400ED1EF76C670072C103 /* SCCycleScrollView */,
+				595401011EF76C670072C103 /* SCCycleScrollViewTests */,
+				5954010C1EF76C670072C103 /* SCCycleScrollViewUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		595400EC1EF76C670072C103 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				595400FC1EF76C670072C103 /* LaunchScreen.storyboard in Resources */,
+				595400F91EF76C670072C103 /* Assets.xcassets in Resources */,
+				595400F71EF76C670072C103 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		595401001EF76C670072C103 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5954010B1EF76C670072C103 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2F925891B51572901A57B1FA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		379FA3548808E6A03ACDF9F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		396CA5F8DD3ACB3E5CF06208 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCCycleScrollView/Pods-SCCycleScrollView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		62A383FCF0BBB43B7162EF2A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCCycleScrollViewTests/Pods-SCCycleScrollViewTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		83C020750104130F897655B8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCCycleScrollViewUITests/Pods-SCCycleScrollViewUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7D5D49B5D073E69C2B5B8B3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCCycleScrollView/Pods-SCCycleScrollView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB09A6069C4033EB560B0D23 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C222FBF418D2023441916198 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCCycleScrollViewUITests/Pods-SCCycleScrollViewUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D81B576BA7C05B06DB30502B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCCycleScrollViewTests/Pods-SCCycleScrollViewTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		595400EA1EF76C670072C103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				595400F41EF76C670072C103 /* ViewController.swift in Sources */,
+				595400F21EF76C670072C103 /* AppDelegate.swift in Sources */,
+				595401531EF773EB0072C103 /* SCCycleScrollViewCell.swift in Sources */,
+				59DD17CA1EFA71280006B52A /* SecondViewController.swift in Sources */,
+				595401511EF773D10072C103 /* SCCycleScrollView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		595400FE1EF76C670072C103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				595401071EF76C670072C103 /* SCCycleScrollViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		595401091EF76C670072C103 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				595401121EF76C670072C103 /* SCCycleScrollViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		595401041EF76C670072C103 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 595400ED1EF76C670072C103 /* SCCycleScrollView */;
+			targetProxy = 595401031EF76C670072C103 /* PBXContainerItemProxy */;
+		};
+		5954010F1EF76C670072C103 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 595400ED1EF76C670072C103 /* SCCycleScrollView */;
+			targetProxy = 5954010E1EF76C670072C103 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		595400F51EF76C670072C103 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				595400F61EF76C670072C103 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		595400FA1EF76C670072C103 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				595400FB1EF76C670072C103 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		595401141EF76C670072C103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		595401151EF76C670072C103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		595401171EF76C670072C103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 710A8374181DC1B902B86603 /* Pods-SCCycleScrollView.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SP9H6353S3;
+				INFOPLIST_FILE = SCCycleScrollView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		595401181EF76C670072C103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SP9H6353S3;
+				INFOPLIST_FILE = SCCycleScrollView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollView;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		5954011A1EF76C670072C103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE499169066A039BF1288527 /* Pods-SCCycleScrollViewTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = SP9H6353S3;
+				INFOPLIST_FILE = SCCycleScrollViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCCycleScrollView.app/SCCycleScrollView";
+			};
+			name = Debug;
+		};
+		5954011B1EF76C670072C103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2734DFF92375AA07383E473 /* Pods-SCCycleScrollViewTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = SP9H6353S3;
+				INFOPLIST_FILE = SCCycleScrollViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollViewTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SCCycleScrollView.app/SCCycleScrollView";
+			};
+			name = Release;
+		};
+		5954011D1EF76C670072C103 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D4C97A61AF1349722903338 /* Pods-SCCycleScrollViewUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = SP9H6353S3;
+				INFOPLIST_FILE = SCCycleScrollViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = SCCycleScrollView;
+			};
+			name = Debug;
+		};
+		5954011E1EF76C670072C103 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C059A38962FE1AB7BFC1698 /* Pods-SCCycleScrollViewUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = SP9H6353S3;
+				INFOPLIST_FILE = SCCycleScrollViewUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollViewUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = SCCycleScrollView;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		595400E91EF76C670072C103 /* Build configuration list for PBXProject "SCCycleScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				595401141EF76C670072C103 /* Debug */,
+				595401151EF76C670072C103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		595401161EF76C670072C103 /* Build configuration list for PBXNativeTarget "SCCycleScrollView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				595401171EF76C670072C103 /* Debug */,
+				595401181EF76C670072C103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		595401191EF76C670072C103 /* Build configuration list for PBXNativeTarget "SCCycleScrollViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5954011A1EF76C670072C103 /* Debug */,
+				5954011B1EF76C670072C103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5954011C1EF76C670072C103 /* Build configuration list for PBXNativeTarget "SCCycleScrollViewUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5954011D1EF76C670072C103 /* Debug */,
+				5954011E1EF76C670072C103 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 595400E61EF76C670072C103 /* Project object */;
+}
