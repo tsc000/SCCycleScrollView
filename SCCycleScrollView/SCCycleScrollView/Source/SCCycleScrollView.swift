@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum CycleScrollViewCellType: String{
+public enum CycleScrollViewCellType: String{
     case Image = "图片或有文字"
     case OnlyTitle = "只有文字"
 }
@@ -40,62 +40,62 @@ open class SCCycleScrollView: UIView {
     //>>>>>>>>>>>>>>>>>>>>>>  SCCycleScrollView属性接口 >>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     /// SCCycleScrollView代理
-    weak var delegate: SCCycleScrollViewDelegate?
+    weak open var delegate: SCCycleScrollViewDelegate?
     
     /// 轮播图滚动方向,默认水平
-    var scrollDirection: UICollectionViewScrollDirection = .horizontal
+    open var scrollDirection: UICollectionViewScrollDirection = .horizontal
     
     /// 定时时间间隔,默认1.0秒
-    var timeInterval: CGFloat = 1.0
+    open var timeInterval: CGFloat = 1.0
     
     //>>>>>>>>>>>>>>>>>>>>>>  title属性接口 >>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     /// 文字颜色,默认非纯白(在图片类型和文字类型中通用)
-    var titleColor: UIColor = UIColor(red: 0xe5 / 255.0, green: 0xf0 / 255.0, blue: 0xf4 / 255.0, alpha: 1.0)
+    open var titleColor: UIColor = UIColor(red: 0xe5 / 255.0, green: 0xf0 / 255.0, blue: 0xf4 / 255.0, alpha: 1.0)
     
     /// 文字大小,默认18(在图片类型和文字类型中通用)
-    var titleFont: UIFont = UIFont.systemFont(ofSize: 18)
+    open var titleFont: UIFont = UIFont.systemFont(ofSize: 18)
     
     /// 文字左侧边距,默认10
-    var titleLeftMargin: CGFloat = 10
+    open var titleLeftMargin: CGFloat = 10
     
     /// 文字背景条颜色,默认黑色
-    var titleContainerBackgroundColor: UIColor? = UIColor.black
+    open var titleContainerBackgroundColor: UIColor? = UIColor.black
     
     /// 文字背景条透明度,默认0.6
-    var titleContainerAlpha: CGFloat = 0.6
+    open var titleContainerAlpha: CGFloat = 0.6
     
     //>>>>>>>>>>>>>>>>>>>>>>  pageControl属性接口 >>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     /// 当前指示器颜色,默认白色
-    var currentPageIndicatorTintColor: UIColor = UIColor.white
+    open var currentPageIndicatorTintColor: UIColor = UIColor.white
     
     /// 非选中指示器颜色,默认亮灰色
-    var pageIndicatorTintColor: UIColor = UIColor.lightGray
+    open var pageIndicatorTintColor: UIColor = UIColor.lightGray
     
     /// pageControl底部边距,默认0
-    var pageControlBottomMargin: CGFloat = 0
+    open var pageControlBottomMargin: CGFloat = 0
     
     /// pageControl右侧边距,默认0
-    var pageControlRightMargin: CGFloat = 0
+    open var pageControlRightMargin: CGFloat = 0
     
     /// 只有一张图片时是否隐藏pageControl,默认隐藏
-    var isHiddenOnlyPage: Bool = true
+    open var isHiddenOnlyPage: Bool = true
     
     /// 外界获取pageControl的size(只读)
-    var pageControlSize: CGSize {
+    open var pageControlSize: CGSize {
         get {
             return pageControl.frame.size
         }
     }
     
     /// cell类型：图片类型和文字类型
-    var cellType: CycleScrollViewCellType?
+    open var cellType: CycleScrollViewCellType?
     
     //>>>>>>>>>>>>>>>>>>>>>>  数据源 >>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     /// 图片数据源
-    var imageArray: [AnyObject]? {
+    open var imageArray: [AnyObject]? {
         didSet {
             
             //如果是文字轮播，直接返回，防止出错
@@ -121,7 +121,7 @@ open class SCCycleScrollView: UIView {
     }
     
     /// 文字数据源
-    var titleArray: [String]? {
+    open var titleArray: [String]? {
         didSet {
 
             if let array = titleArray, array.count > 0 {
