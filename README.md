@@ -5,5 +5,5 @@
 
 ****** iOS图片、文字轮播器 ******
 
-详细说明:[SCCycleScrollView](http://www.jianshu.com/p/2b765afa5b7c)
+详细说明:[SCCycleScrollView](http://www.jianshu.com/p/eaa444356ab9)
 
