@@ -28,11 +28,11 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         //图 + 文字
         createImageScrollView()
         
-        //本地图片
-        createImage()
-
-        //纯文字
-        createTitleScrollView()
+//        //本地图片
+//        createImage()
+//
+//        //纯文字
+//        createTitleScrollView()
 
     }
     
@@ -115,9 +115,10 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         
         sccyleScrollView.delegate = self
         
-        sccyleScrollView.pageControlBottomMargin = 46
-        
-        sccyleScrollView.pageControlRightMargin = (UIScreen.main.bounds.width - sccyleScrollView.pageControlSize.width) / 2.0
+        sccyleScrollView.pageControlFrame = CGRect(x: 0, y: 0, width: 20, height: 10)
+//        sccyleScrollView.pageControlBottomMargin = 46
+//
+//        sccyleScrollView.pageControlRightMargin = (UIScreen.main.bounds.width - sccyleScrollView.pageControlSize.width) / 2.0
         
         
         scrollView.addSubview(sccyleScrollView)

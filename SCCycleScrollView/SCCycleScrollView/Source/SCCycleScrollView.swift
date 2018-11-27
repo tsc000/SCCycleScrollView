@@ -59,6 +59,13 @@ open class SCCycleScrollView: UIView {
     /// 非选中指示器颜色,默认亮灰色
     open var pageIndicatorTintColor: UIColor = UIColor.lightGray
     
+    open var pageControlFrame: CGRect = CGRect(x: 0, y: 0, width: 0, height: 0) {
+        
+        didSet {
+            pageControl.frame = frame;
+        }
+    }
+    
     /// pageControl底部边距,默认0
     open var pageControlBottomMargin: CGFloat = 0
     
@@ -189,8 +196,8 @@ open class SCCycleScrollView: UIView {
         // pageControl只和cell类型有关和滚动方向无关
         if cellType == .Image {
             //pageControl高度是33,
-            pageControl.frame.origin.x = self.frame.width - pageControl.frame.width - pageControlRightMargin
-            pageControl.frame.origin.y = self.frame.height - pageControl.frame.height - pageControlBottomMargin + 15
+//            pageControl.frame.origin.x = self.frame.width - pageControl.frame.width - pageControlRightMargin
+//            pageControl.frame.origin.y = self.frame.height - pageControl.frame.height - pageControlBottomMargin + 15
             
             //经过imageArray的处理保证了internalImageArray一定非空
             currentPage = String.cycleCount * internalImageArray!.count / 2
@@ -312,10 +319,11 @@ open class SCCycleScrollView: UIView {
     }()
     
     fileprivate var pageControl: UIPageControl! = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 37)
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 6)
         let pageControl = UIPageControl(frame: frame)
         pageControl.currentPageIndicatorTintColor = UIColor.white //默认指示器颜色
         pageControl.pageIndicatorTintColor = UIColor.lightGray
+        pageControl.backgroundColor = UIColor.orange
         return pageControl
     }()
 }
