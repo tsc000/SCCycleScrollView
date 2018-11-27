@@ -30,7 +30,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         
         //本地图片
         createImage()
-        
+
         //纯文字
         createTitleScrollView()
 
@@ -167,7 +167,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
     }
     
     func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll2ItemAt index: Int) {
-//        print("scroll: \(index)")
+        print("scroll: \(index)")
     }
     
     

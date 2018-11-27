@@ -48,13 +48,10 @@ class SCCycleScrollViewCell: UICollectionViewCell {
     var title: String? {
         didSet {
             if let title = title, !title.isEmpty {
-                
                 bannerView.isHidden = false
-                
                 titleLabel.text = title
             } else {
                 bannerView.isHidden = true
-                
                 titleLabel.text = ""
             }
         }
@@ -68,12 +65,10 @@ class SCCycleScrollViewCell: UICollectionViewCell {
                 //网络图片
                 if imageString.contains("http") {
                     let url = URL(string: imageString)
-                    
                     imageView?.kf.setImage(with: url, placeholder: placeholderImage)
                 } else { //其它图片（暂指本地图片）
                     imageView.image = UIImage(named: imageString)
                 }
-                
                 
             } else {
                 imageView.image = placeholderImage
@@ -81,12 +76,6 @@ class SCCycleScrollViewCell: UICollectionViewCell {
             
         }
     }
-    
-    private var bannerView: UIView!
-    
-    private var titleLabel: UILabel!
-    
-    private weak var imageView: UIImageView!
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -97,13 +86,10 @@ class SCCycleScrollViewCell: UICollectionViewCell {
         case .Image:
             
             bannerView.frame = CGRect(x: 0, y: self.frame.height - 40, width: self.frame.width, height: 40)
-            
             imageView.frame = self.bounds
             
         case .OnlyTitle:
-            
             bannerView.frame = self.bounds
-            
         }
         
         titleLabel.frame = CGRect(x: titleLeftMargin ?? 0, y: bannerView.frame.origin.y, width: self.frame.width - (titleLeftMargin ?? 0), height: bannerView.frame.height)
@@ -111,45 +97,39 @@ class SCCycleScrollViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initial()
     }
     
     private func setupUI() {
-        setupImageView()
-        
-        setupTitle()
+        [imageView, bannerView, titleLabel].forEach(contentView.addSubview(_:))
     }
     
     private func initial() {
-        
         setupUI()
-    }
-    
-    private func setupImageView() {
-        let imageView = UIImageView()
-        
-        contentView.addSubview(imageView)
-        
-        self.imageView = imageView
-    }
-    
-    private func setupTitle() {
-        bannerView = UIView()
-        
-        bannerView.backgroundColor = UIColor.black
-        
-        bannerView.alpha = 0.5
-        
-        titleLabel = UILabel()
-  
-        titleLabel.textAlignment = .left
-        
-        [bannerView, titleLabel].forEach(contentView.addSubview(_:))
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - GET
+    
+    private lazy var bannerView: UIView! = {
+        let bannerView = UIView()
+        bannerView.backgroundColor = UIColor.black
+        bannerView.alpha = 0.5
+        return bannerView
+    }()
+    
+    private lazy var titleLabel: UILabel! = {
+        let titleLabel = UILabel()
+        titleLabel.textAlignment = .left
+        return titleLabel
+    }()
+    
+    private lazy var imageView: UIImageView! = {
+        let imageView = UIImageView()
+        return imageView
+    }()
+    
 }

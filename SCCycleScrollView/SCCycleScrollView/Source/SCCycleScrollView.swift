@@ -16,25 +16,11 @@ public enum CycleScrollViewCellType: String{
 open class SCCycleScrollView: UIView {
     
     //////////////////////  私有属性  //////////////////////
-    
-    fileprivate weak var collectionView: UICollectionView!
-    
-    private var flowLayout: UICollectionViewFlowLayout!
-    
-    fileprivate weak var pageControl: UIPageControl!
-    
+
     fileprivate var placeholderImage: UIImage?
-    
-    fileprivate var SCCycleScrollViewID = "SCCycleScrollViewID"
-    
     fileprivate var currentPage: Int = 0
-    
     fileprivate var timer: Timer?
-    
-    fileprivate let cycleCount = 1000
-    
     fileprivate var internalImageArray: [AnyObject]?
-    
     fileprivate var internalTitleArray: [String]?
     
     //>>>>>>>>>>>>>>>>>>>>>>  SCCycleScrollView属性接口 >>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -43,7 +29,7 @@ open class SCCycleScrollView: UIView {
     weak open var delegate: SCCycleScrollViewDelegate?
     
     /// 轮播图滚动方向,默认水平
-    open var scrollDirection: UICollectionViewScrollDirection = .horizontal
+    open var scrollDirection: UICollectionView.ScrollDirection = .horizontal
     
     /// 定时时间间隔,默认1.0秒
     open var timeInterval: CGFloat = 1.0
@@ -103,19 +89,14 @@ open class SCCycleScrollView: UIView {
             
             if let images = imageArray, images.count > 0 {
                 pageControl.numberOfPages = images.count
-                
                 pageControl.frame.size.width = pageControl.size(forNumberOfPages: pageControl.numberOfPages).width
-                
                 internalImageArray = imageArray
-                
             } else { //[] 或 nil
                 internalImageArray = [""]  as [AnyObject]
             }
 
             configureInternalTitleArray()
-            
             setNeedsLayout()
-            
             collectionView.reloadData()
         }
     }
@@ -131,12 +112,9 @@ open class SCCycleScrollView: UIView {
             }
             
             if cellType == .Image {
-
                 configureInternalTitleArray()
-                
             } else {
                 setNeedsLayout()
-                
                 collectionView.reloadData()
             }
             
@@ -157,15 +135,10 @@ open class SCCycleScrollView: UIView {
     open class func cycleScrollView(frame: CGRect, delegate: SCCycleScrollViewDelegate?, imageArray: [AnyObject]? = nil, titleArray: [String]? = [], placeholderImage: UIImage?) -> SCCycleScrollView {
         
         let cycleScrollView = SCCycleScrollView(frame: frame)
-        
         cycleScrollView.delegate = delegate
-        
         cycleScrollView.placeholderImage = placeholderImage
-        
         cycleScrollView.cellType = .Image
-        
         cycleScrollView.imageArray = imageArray
-        
         cycleScrollView.titleArray = titleArray
 
         return cycleScrollView
@@ -181,11 +154,8 @@ open class SCCycleScrollView: UIView {
     open class func cycleScrollView(frame: CGRect, delegate: SCCycleScrollViewDelegate, titleArray: [String]? = []) -> SCCycleScrollView {
         
         let cycleScrollView = SCCycleScrollView(frame: frame)
-        
         cycleScrollView.delegate = delegate
-        
         cycleScrollView.cellType = .OnlyTitle
-        
         cycleScrollView.titleArray = titleArray
 
         return cycleScrollView
@@ -197,24 +167,19 @@ open class SCCycleScrollView: UIView {
         if cellType == .Image {
             //图片和文字
             guard let count = internalImageArray?.count, count > 1 else {
-                
                 configureCycleScrollView(scrollEnabled: false, pageHidden: isHiddenOnlyPage, timerBlock: invalidateTimer)
-                
                 return
             }
             
         } else {
             //文字
             guard let count = internalTitleArray?.count, count > 1 else {
-                
                 configureCycleScrollView(scrollEnabled: false, pageHidden: isHiddenOnlyPage, timerBlock: invalidateTimer)
-                
                 return
             }
         }
         
         configureCycleScrollView(scrollEnabled: true, pageHidden: !isHiddenOnlyPage, timerBlock: setupTimer)
-        
     }
     
     private func configureCycleScrollView(scrollEnabled: Bool, pageHidden: Bool, timerBlock: (() -> Void)) {
@@ -225,22 +190,18 @@ open class SCCycleScrollView: UIView {
         if cellType == .Image {
             //pageControl高度是33,
             pageControl.frame.origin.x = self.frame.width - pageControl.frame.width - pageControlRightMargin
-            
             pageControl.frame.origin.y = self.frame.height - pageControl.frame.height - pageControlBottomMargin + 15
             
             //经过imageArray的处理保证了internalImageArray一定非空
-            currentPage = cycleCount * internalImageArray!.count / 2
+            currentPage = String.cycleCount * internalImageArray!.count / 2
         } else {
             //经过titleArray的处理保证了internalTitleArray一定非空
-            currentPage = cycleCount * internalTitleArray!.count / 2
+            currentPage = String.cycleCount * internalTitleArray!.count / 2
         }
         
         let indexPath = IndexPath(item: currentPage, section:0)
-        
         collectionView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: false)
-        
         collectionView.isScrollEnabled = scrollEnabled
-        
         pageControl.isHidden = pageHidden
         
         timerBlock()
@@ -255,9 +216,7 @@ open class SCCycleScrollView: UIView {
         if internalImageArray!.count > internalTitleArray!.count {
             
             for _ in 0..<(internalImageArray!.count - internalTitleArray!.count) {
-                
                 internalTitleArray?.append("")
-                
             }
             
         }
@@ -266,7 +225,6 @@ open class SCCycleScrollView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         initial()
     }
     
@@ -275,134 +233,104 @@ open class SCCycleScrollView: UIView {
         currentPage = currentPage + 1
         
         let count = cellType == .Image ? internalImageArray!.count: internalTitleArray!.count
-        
         switch scrollDirection {
         case .horizontal:
             
-            if collectionView.contentOffset.x == CGFloat(count * cycleCount - 1) * self.frame.size.width {
-                
+            if collectionView.contentOffset.x == CGFloat(count * String.cycleCount - 1) * self.frame.size.width {
                 currentPage = currentPage / 2
-                
             }
             
         case .vertical:
             
-            if collectionView.contentOffset.y == CGFloat(count * cycleCount - 1) * self.frame.size.height {
-                
+            if collectionView.contentOffset.y == CGFloat(count * String.cycleCount - 1) * self.frame.size.height {
                 currentPage = currentPage / 2
-                
             }
             
         }
         
         let indexPath = IndexPath(item: currentPage, section:0)
-        
         collectionView.scrollToItem(at: indexPath, at: .init(rawValue: 0), animated: true)
-        
     }
     
     fileprivate func setupTimer() {
         guard timer == nil else { return }
-        
         timer = Timer(timeInterval: TimeInterval(timeInterval), target: self, selector: #selector(roll), userInfo: nil, repeats: true)
-        
-        RunLoop.current.add(timer!, forMode: .commonModes)
+        RunLoop.current.add(timer!, forMode: RunLoop.Mode.common)
     }
     
     fileprivate func invalidateTimer() {
         guard timer != nil else { return }
-        
         timer?.invalidate()
-        
         timer = nil
     }
     
     private func setupUI() {
-        setupCollectionView()
         
-        setupPageControl()
-    }
-    
-    private func setupPageControl() {
-        
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 37)
-        
-        let pageControl = UIPageControl(frame: frame)
-        
-        //默认指示器颜色
-        pageControl.currentPageIndicatorTintColor = UIColor.white
-        
-        pageControl.pageIndicatorTintColor = UIColor.lightGray
-        
-        self.pageControl = pageControl
-        
-        addSubview(pageControl)
-    }
-    
-    private func setupCollectionView() {
-
         //不加会不正常，这个是automaticallyAdjustsScrollViewInsets的影响
         addSubview(UIView())
         
-        flowLayout = UICollectionViewFlowLayout()
-        
-        flowLayout.itemSize = self.frame.size
-        
-        flowLayout.minimumLineSpacing = 0
-        
-        flowLayout.minimumInteritemSpacing = 0
-        
         let frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
-        
-        let collectionView = UICollectionView(frame: frame, collectionViewLayout: flowLayout)
-        
-        collectionView.isPagingEnabled = true
-        
-        collectionView.scrollsToTop = false
-        
-        //清除collectionView背景色，否则文字背景条的透明度不起作用
-        collectionView.backgroundColor = UIColor.clear
-        
-        collectionView.bounces = false
-
-        collectionView.showsVerticalScrollIndicator = false
-        
-        collectionView.showsHorizontalScrollIndicator = false
-        
-        collectionView.register(SCCycleScrollViewCell.self, forCellWithReuseIdentifier: SCCycleScrollViewID)
-        
+        flowLayout.itemSize = self.frame.size
+        collectionView.frame = frame
+        collectionView.collectionViewLayout = flowLayout
         collectionView.delegate = self
-        
         collectionView.dataSource = self
         
-        self.collectionView = collectionView
-        
-        addSubview(collectionView)
+        [collectionView, pageControl].forEach(addSubview)
     }
     
     private func initial() {
-        
         setupUI()
     }
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+    
+    //MARK: - GET
+    
+    private var flowLayout: UICollectionViewFlowLayout! = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.minimumLineSpacing = 0
+        flowLayout.minimumInteritemSpacing = 0
+        return flowLayout
+    }()
+    
+    fileprivate var collectionView: UICollectionView! = {
+        
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.isPagingEnabled = true
+        collectionView.scrollsToTop = false
+        //清除collectionView背景色，否则文字背景条的透明度不起作用
+        collectionView.backgroundColor = UIColor.clear
+        collectionView.bounces = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(SCCycleScrollViewCell.self, forCellWithReuseIdentifier: .cycleScrollViewID)
+        
+        return collectionView
+    }()
+    
+    fileprivate var pageControl: UIPageControl! = {
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 37)
+        let pageControl = UIPageControl(frame: frame)
+        pageControl.currentPageIndicatorTintColor = UIColor.white //默认指示器颜色
+        pageControl.pageIndicatorTintColor = UIColor.lightGray
+        return pageControl
+    }()
 }
 
 //MARK: - UICollectionViewDataSource UICollectionViewDataSource
 extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         let count = cellType == .Image ? (internalImageArray!.count) : (internalTitleArray!.count)
-        
-        return count * cycleCount
+        return count * String.cycleCount
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SCCycleScrollViewID, for: indexPath) as! SCCycleScrollViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .cycleScrollViewID, for: indexPath) as! SCCycleScrollViewCell
         
         if let type = cellType {
             switch type {
@@ -411,45 +339,31 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
                 cell.placeholderImage = placeholderImage
                 
                 if let count = internalImageArray?.count, count > 0 {
-                    
                     cell.image = internalImageArray?[indexPath.row % count] as? String
-                    
                     cell.title = internalTitleArray?[indexPath.row % count]
-  
                 }
                 
             case .OnlyTitle:
                 
                 if let count = internalTitleArray?.count, count > 0 {
-                    
                     cell.title = internalTitleArray?[indexPath.row % count]
-
                 }
                 
             }
             
             cell.titleFont = titleFont
-            
             cell.titleColor = titleColor
-            
             cell.titleLeftMargin = titleLeftMargin
-            
             cell.titleContainerAlpha = titleContainerAlpha
-            
             cell.titleContainerBackgroundColor = titleContainerBackgroundColor
-            
             cell.cellType = cellType
         }
-        
-        
         
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         let count = cellType == .Image ? (internalImageArray!.count) : (internalTitleArray!.count)
-        
         delegate?.cycleScrollView?(self, didSelectItemAt: indexPath.row % count)
     }
 }
@@ -476,7 +390,6 @@ extension SCCycleScrollView: UIScrollViewDelegate {
     }
     
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
         setupTimer()
     }
     
@@ -486,8 +399,12 @@ extension SCCycleScrollView: UIScrollViewDelegate {
         
         ///.........为毛加个？
         delegate?.cycleScrollView?(self, didScroll2ItemAt: currentPage % count)
-        
     }
+}
+
+fileprivate extension String {
+    static let cycleScrollViewID = "SCCycleScrollViewID"
+    static let cycleCount = 1000
 }
 
  @objc public protocol SCCycleScrollViewDelegate: NSObjectProtocol {
