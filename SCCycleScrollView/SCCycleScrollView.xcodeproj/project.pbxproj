@@ -259,7 +259,7 @@
 				TargetAttributes = {
 					595400ED1EF76C670072C103 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = SP9H6353S3;
+						DevelopmentTeam = D2M5X57582;
 						ProvisioningStyle = Automatic;
 					};
 					595401011EF76C670072C103 = {
@@ -625,11 +625,14 @@
 			baseConfigurationReference = 710A8374181DC1B902B86603 /* Pods-SCCycleScrollView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SP9H6353S3;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2M5X57582;
 				INFOPLIST_FILE = SCCycleScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollView;
+				PRODUCT_BUNDLE_IDENTIFIER = tsc000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -639,11 +642,14 @@
 			baseConfigurationReference = EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = SP9H6353S3;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = D2M5X57582;
 				INFOPLIST_FILE = SCCycleScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tsc.SCCycleScrollView;
+				PRODUCT_BUNDLE_IDENTIFIER = tsc000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

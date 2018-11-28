@@ -29,10 +29,10 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         createImageScrollView()
         
 //        //本地图片
-//        createImage()
+        createImage()
 //
 //        //纯文字
-//        createTitleScrollView()
+        createTitleScrollView()
 
     }
     
@@ -52,15 +52,12 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
             "6.jpg"
             ] as [AnyObject]
         
-        let cycleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: imageArray,placeholderImage: placeholderImage)
+        let cycleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, placeholderImage: placeholderImage)
         
         cycleScrollView.imageArray = imageArray
         
         cycleScrollView.scrollDirection = .vertical
-        
-        cycleScrollView.pageControlBottomMargin = 15
-        
-        cycleScrollView.pageControlRightMargin = (UIScreen.main.bounds.width - cycleScrollView.pageControlSize.width) / 2.0
+        cycleScrollView.pageControlOrigin = CGPoint(x: (cycleScrollView.frame.width - cycleScrollView.pageControlSize.width) / 2.0, y: cycleScrollView.frame.height - cycleScrollView.pageControlSize.height - 10);
         
         scrollView.addSubview(cycleScrollView)
     }
@@ -101,7 +98,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
             "轮播图持续维护中..."
         ]
         
-        let sccyleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, placeholderImage: placeholderImage)
+        let sccyleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, titleArray: nil, placeholderImage: placeholderImage)
         
         sccyleScrollView.imageArray = imageArray as [AnyObject]
         
@@ -115,7 +112,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         
         sccyleScrollView.delegate = self
         
-        sccyleScrollView.pageControlFrame = CGRect(x: 0, y: 0, width: 20, height: 10)
+        sccyleScrollView.pageControlOrigin = CGPoint(x: (sccyleScrollView.frame.width - sccyleScrollView.pageControlSize.width) / 2.0, y: sccyleScrollView.frame.height - 40 - sccyleScrollView.pageControlSize.height - 6);
 //        sccyleScrollView.pageControlBottomMargin = 46
 //
 //        sccyleScrollView.pageControlRightMargin = (UIScreen.main.bounds.width - sccyleScrollView.pageControlSize.width) / 2.0
@@ -127,7 +124,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
     //纯文字
     private func createTitleScrollView() {
     
-        let frame = CGRect(x: 0, y: 550, width: UIScreen.main.bounds.width, height: 40)
+        let frame = CGRect(x: 0, y: 550, width: UIScreen.main.bounds.width, height: 80)
 
         let titleArray = [
             "感谢您的支持",

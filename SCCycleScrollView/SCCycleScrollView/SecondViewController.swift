@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
 
     private var scCycle1: SCCycleScrollView!
     
@@ -53,7 +53,7 @@ class SecondViewController: UIViewController {
             "轮播图持续维护中..."
         ]
         
-        let sccyleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: nil, placeholderImage: placeholderImage)
+        let sccyleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, titleArray: nil, placeholderImage: placeholderImage)
         
         sccyleScrollView.imageArray = imageArray as [AnyObject]
         
@@ -63,9 +63,7 @@ class SecondViewController: UIViewController {
         
         sccyleScrollView.titleColor = UIColor.orange
         
-        sccyleScrollView.pageControlBottomMargin = 46
-        
-        sccyleScrollView.pageControlRightMargin = (UIScreen.main.bounds.width - sccyleScrollView.pageControlSize.width) / 2.0
+        sccyleScrollView.pageControlOrigin = CGPoint(x: (sccyleScrollView.frame.width - sccyleScrollView.pageControlSize.width) / 2.0, y: sccyleScrollView.frame.height - sccyleScrollView.pageControlSize.height - 10 - 46);
         
         view.addSubview(sccyleScrollView)
         

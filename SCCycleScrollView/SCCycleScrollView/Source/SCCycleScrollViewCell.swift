@@ -13,7 +13,7 @@ class SCCycleScrollViewCell: UICollectionViewCell {
     
     var placeholderImage: UIImage?
     
-    var cellType: CycleScrollViewCellType?
+    var cellType: CycleScrollViewCellStyle?
     
     var titleFont: UIFont? {
         didSet {
@@ -83,16 +83,20 @@ class SCCycleScrollViewCell: UICollectionViewCell {
         guard let type = cellType else { return }
         
         switch type {
-        case .Image:
-            
+        case .image:
+            imageView.frame = self.bounds
+        case .title:
+            bannerView.frame = self.bounds
+            titleLabel.frame = CGRect(x: titleLeftMargin ?? 0, y: bannerView.frame.origin.y, width: self.frame.width - (titleLeftMargin ?? 0), height: bannerView.frame.height)
+        case .mix:
             bannerView.frame = CGRect(x: 0, y: self.frame.height - 40, width: self.frame.width, height: 40)
             imageView.frame = self.bounds
-            
-        case .OnlyTitle:
-            bannerView.frame = self.bounds
+            titleLabel.frame = CGRect(x: titleLeftMargin ?? 0, y: bannerView.frame.origin.y, width: self.frame.width - (titleLeftMargin ?? 0), height: bannerView.frame.height)
+        case .custom:
+            break
         }
         
-        titleLabel.frame = CGRect(x: titleLeftMargin ?? 0, y: bannerView.frame.origin.y, width: self.frame.width - (titleLeftMargin ?? 0), height: bannerView.frame.height)
+        
     }
     
     override init(frame: CGRect) {
@@ -100,12 +104,8 @@ class SCCycleScrollViewCell: UICollectionViewCell {
         initial()
     }
     
-    private func setupUI() {
-        [imageView, bannerView, titleLabel].forEach(contentView.addSubview(_:))
-    }
-    
     private func initial() {
-        setupUI()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -118,17 +118,20 @@ class SCCycleScrollViewCell: UICollectionViewCell {
         let bannerView = UIView()
         bannerView.backgroundColor = UIColor.black
         bannerView.alpha = 0.5
+        contentView.addSubview(bannerView)
         return bannerView
     }()
     
     private lazy var titleLabel: UILabel! = {
         let titleLabel = UILabel()
         titleLabel.textAlignment = .left
+        contentView.addSubview(titleLabel)
         return titleLabel
     }()
     
     private lazy var imageView: UIImageView! = {
         let imageView = UIImageView()
+        contentView.addSubview(imageView)
         return imageView
     }()
     
