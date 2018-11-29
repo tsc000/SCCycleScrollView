@@ -33,7 +33,7 @@ open class SCCycleScrollView: UIView {
      open var delegate: SCCycleScrollViewDelegate? {
         didSet {
 
-            test()
+            registerCell()
 //            var validationResult = self.delegate?.validationChecking?(ForCycleScrollView: self)
 //
 //            let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:AtIndex:ForCycleScrollView:)))
@@ -177,7 +177,7 @@ open class SCCycleScrollView: UIView {
         cycleScrollView.placeholderImage = placeholderImage
         cycleScrollView.cellType = .image
         cycleScrollView.imageArray = imageArray
-        cycleScrollView.test()
+        
         return cycleScrollView
     }
     
@@ -216,7 +216,6 @@ open class SCCycleScrollView: UIView {
         cycleScrollView.imageArray = imageArray
         cycleScrollView.titleArray = titleArray
 
-        cycleScrollView.test()
         return cycleScrollView
     }
     
@@ -245,25 +244,16 @@ open class SCCycleScrollView: UIView {
         configureCycleScrollView(scrollEnabled: true, pageHidden: !isHiddenOnlyPage, timerBlock: setupTimer)
     }
     
-    func test() {
-        var validationResult = self.delegate?.validationChecking?(ForCycleScrollView: self)
-        
+    func registerCell() {
+        let validationResult: AnyClass? = self.delegate?.validationChecking?(ForCycleScrollView: self)
         let respondsValidation = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.validationChecking(ForCycleScrollView:)))
         let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:AtIndex:ForCycleScrollView:)))
-        
-        
-        guard let _ = respondsConfigure, let _ = respondsConfigure, let _ = validationResult else {
+    
+        guard let _ = respondsConfigure, let _ = respondsValidation, let _ = validationResult else {
             return
         }
-        
-//        if let respondsConfigure = respondsConfigure,
-//            let respondsValidation = respondsValidation,
-//            let validationResult = validationResult,
-//            respondsConfigure && respondsValidation {
-//
-//            self.collectionView.register(validationResult.self, forCellWithReuseIdentifier: .cycleScrollViewID)
-//
-//        }
+        self.collectionView.register(validationResult.self, forCellWithReuseIdentifier: .cycleScrollViewID)
+
     }
     private func configureCycleScrollView(scrollEnabled: Bool, pageHidden: Bool, timerBlock: (() -> Void)) {
         

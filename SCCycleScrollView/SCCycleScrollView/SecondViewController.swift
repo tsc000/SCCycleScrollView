@@ -155,11 +155,6 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
     }
     
     func validationChecking(ForCycleScrollView: SCCycleScrollView) -> AnyClass? {
-        
-        if scCycle3 != ForCycleScrollView  {
-            return nil
-        }
-        
         return CustomCollectionViewCell.self
     }
 
