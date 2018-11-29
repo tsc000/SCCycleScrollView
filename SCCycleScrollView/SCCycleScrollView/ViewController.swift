@@ -25,14 +25,9 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
  
         createBackgroundView()
         
-        //图 + 文字
-        createImageScrollView()
-        
-//        //本地图片
-        createImage()
-//
-//        //纯文字
-        createTitleScrollView()
+        let vc = SecondViewController()
+        navigationController?.pushViewController(vc, animated: false)
+
 
     }
     

@@ -11,8 +11,9 @@ import UIKit
 class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
 
     private var scCycle1: SCCycleScrollView!
-    
     private var scCycle2: SCCycleScrollView!
+    private var scCycle3: SCCycleScrollView!
+
     
     private var revert: Bool = false
     
@@ -23,13 +24,43 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
         
         var frame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: 200)
     
-        scCycle1 = createImageScrollView(frame: frame)
+//        scCycle1 = createImageScrollView(frame: frame)
         
         frame = CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: 200)
         
-        scCycle2 = createImageScrollView(frame: frame)
+//        scCycle2 = createImageScrollView(frame: frame)
 
-        createButton()
+//        createButton()
+        
+        createImage()
+        
+    }
+    
+    
+    //本地图片
+    func createImage() {
+        
+        let frame = CGRect(x: 0, y: 200, width: UIScreen.main.bounds.width, height: 200)
+        
+        let placeholderImage = UIImage(named: "swift.jpeg")
+        
+        let imageArray = [
+            "1.jpg",
+            "2.jpg",
+            "3.jpg",
+            "4.jpg",
+            "5.jpg",
+            "6.jpg"
+            ] as [AnyObject]
+        
+        scCycle3 = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, placeholderImage: placeholderImage)
+        scCycle3.delegate = self
+        scCycle3.imageArray = imageArray
+        
+        scCycle3.scrollDirection = .vertical
+        scCycle3.pageControlOrigin = CGPoint(x: (scCycle3.frame.width - scCycle3.pageControlSize.width) / 2.0, y: scCycle3.frame.height - scCycle3.pageControlSize.height - 10);
+        
+        view.addSubview(scCycle3)
     }
     
     //图 + 文字
@@ -114,6 +145,22 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
             revert = true
         }
         
+    }
+    
+    
+    
+    
+    func configureCollectionViewCell(cell: UICollectionViewCell, AtIndex index: NSInteger, ForCycleScrollView: SCCycleScrollView) {
+        
+    }
+    
+    func validationChecking(ForCycleScrollView: SCCycleScrollView) -> AnyClass? {
+        
+        if scCycle3 != ForCycleScrollView  {
+            return nil
+        }
+        
+        return CustomCollectionViewCell.self
     }
 
 }

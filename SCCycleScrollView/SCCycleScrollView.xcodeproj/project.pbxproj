@@ -20,6 +20,7 @@
 		59DD17CA1EFA71280006B52A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59DD17C91EFA71280006B52A /* SecondViewController.swift */; };
 		7B673F0BF9B47560FC9BB7BA /* Pods_SCCycleScrollViewUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82C41B4DBF54665CEC71235B /* Pods_SCCycleScrollViewUITests.framework */; };
 		B2EA6C81C1DA729ECF9CA1C8 /* Pods_SCCycleScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC6909A00FDCC62D75C98DA /* Pods_SCCycleScrollView.framework */; };
+		E72246C721AEDD7E001C4098 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72246C621AEDD7E001C4098 /* CustomCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		AEC6909A00FDCC62D75C98DA /* Pods_SCCycleScrollView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCCycleScrollView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE499169066A039BF1288527 /* Pods-SCCycleScrollViewTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollViewTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollViewTests/Pods-SCCycleScrollViewTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E2734DFF92375AA07383E473 /* Pods-SCCycleScrollViewTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollViewTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollViewTests/Pods-SCCycleScrollViewTests.release.xcconfig"; sourceTree = "<group>"; };
+		E72246C621AEDD7E001C4098 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		E72246CF21AF8EA2001C4098 /* SCCycleScrollView-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCCycleScrollView-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollView.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollView/Pods-SCCycleScrollView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +141,8 @@
 				595400FA1EF76C670072C103 /* LaunchScreen.storyboard */,
 				595400FD1EF76C670072C103 /* Info.plist */,
 				59DD17C91EFA71280006B52A /* SecondViewController.swift */,
+				E72246C621AEDD7E001C4098 /* CustomCollectionViewCell.swift */,
+				E72246CF21AF8EA2001C4098 /* SCCycleScrollView-Bridging-Header.h */,
 			);
 			path = SCCycleScrollView;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 					595400ED1EF76C670072C103 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = D2M5X57582;
+						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
 					595401011EF76C670072C103 = {
@@ -469,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				595400F41EF76C670072C103 /* ViewController.swift in Sources */,
+				E72246C721AEDD7E001C4098 /* CustomCollectionViewCell.swift in Sources */,
 				595400F21EF76C670072C103 /* AppDelegate.swift in Sources */,
 				595401531EF773EB0072C103 /* SCCycleScrollViewCell.swift in Sources */,
 				59DD17CA1EFA71280006B52A /* SecondViewController.swift in Sources */,
@@ -625,6 +632,7 @@
 			baseConfigurationReference = 710A8374181DC1B902B86603 /* Pods-SCCycleScrollView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D2M5X57582;
@@ -633,6 +641,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tsc000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SCCycleScrollView/SCCycleScrollView-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -642,6 +652,7 @@
 			baseConfigurationReference = EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = D2M5X57582;
@@ -650,6 +661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = tsc000;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "SCCycleScrollView/SCCycleScrollView-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

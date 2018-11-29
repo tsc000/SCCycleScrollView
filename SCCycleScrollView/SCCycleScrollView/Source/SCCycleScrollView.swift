@@ -30,7 +30,26 @@ open class SCCycleScrollView: UIView {
     open var cellType: CycleScrollViewCellStyle?
     
     /// SCCycleScrollView代理
-    weak open var delegate: SCCycleScrollViewDelegate?
+     open var delegate: SCCycleScrollViewDelegate? {
+        didSet {
+
+            test()
+//            var validationResult = self.delegate?.validationChecking?(ForCycleScrollView: self)
+//
+//            let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:AtIndex:ForCycleScrollView:)))
+//            let respondsValidation = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.validationChecking(ForCycleScrollView:)))
+//
+//            if let respondsConfigure = respondsConfigure,
+//                let respondsValidation = respondsValidation,
+//                let validationResult = validationResult,
+//                respondsConfigure && respondsValidation {
+//
+//                self.collectionView.register(validationResult.self, forCellWithReuseIdentifier: .cycleScrollViewID)
+//
+//            }
+            
+        }
+    }
     
     /// 轮播图滚动方向,默认水平
     open var scrollDirection: UICollectionView.ScrollDirection = .horizontal
@@ -158,7 +177,7 @@ open class SCCycleScrollView: UIView {
         cycleScrollView.placeholderImage = placeholderImage
         cycleScrollView.cellType = .image
         cycleScrollView.imageArray = imageArray
-        
+        cycleScrollView.test()
         return cycleScrollView
     }
     
@@ -197,45 +216,70 @@ open class SCCycleScrollView: UIView {
         cycleScrollView.imageArray = imageArray
         cycleScrollView.titleArray = titleArray
 
+        cycleScrollView.test()
         return cycleScrollView
     }
     
     override open func layoutSubviews() {
         super.layoutSubviews()
 
-        if cellType == .mix {
-            //图片和文字
+        switch self.cellType {
+        case .image?, .mix?:
+            //图片
             guard let count = internalImageArray?.count, count > 1 else {
                 configureCycleScrollView(scrollEnabled: false, pageHidden: isHiddenOnlyPage, timerBlock: invalidateTimer)
                 return
             }
-            
-        } else {
+        case .title?:
             //文字
             guard let count = internalTitleArray?.count, count > 1 else {
                 configureCycleScrollView(scrollEnabled: false, pageHidden: isHiddenOnlyPage, timerBlock: invalidateTimer)
                 return
             }
+        case .custom?:
+            break
+        case .none:
+            break
         }
         
         configureCycleScrollView(scrollEnabled: true, pageHidden: !isHiddenOnlyPage, timerBlock: setupTimer)
     }
     
+    func test() {
+        var validationResult = self.delegate?.validationChecking?(ForCycleScrollView: self)
+        
+        let respondsValidation = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.validationChecking(ForCycleScrollView:)))
+        let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:AtIndex:ForCycleScrollView:)))
+        
+        
+        guard let _ = respondsConfigure, let _ = respondsConfigure, let _ = validationResult else {
+            return
+        }
+        
+//        if let respondsConfigure = respondsConfigure,
+//            let respondsValidation = respondsValidation,
+//            let validationResult = validationResult,
+//            respondsConfigure && respondsValidation {
+//
+//            self.collectionView.register(validationResult.self, forCellWithReuseIdentifier: .cycleScrollViewID)
+//
+//        }
+    }
     private func configureCycleScrollView(scrollEnabled: Bool, pageHidden: Bool, timerBlock: (() -> Void)) {
         
         flowLayout.scrollDirection = scrollDirection
         
-        // pageControl只和cell类型有关和滚动方向无关
-        if cellType == .mix {
-            //pageControl高度是33,
-//            pageControl.frame.origin.x = self.frame.width - pageControl.frame.width - pageControlRightMargin
-//            pageControl.frame.origin.y = self.frame.height - pageControl.frame.height - pageControlBottomMargin + 15
-            
+        switch self.cellType {
+        case .image?, .mix?:
             //经过imageArray的处理保证了internalImageArray一定非空
             currentPage = String.cycleCount * internalImageArray!.count / 2
-        } else {
+        case .title?:
             //经过titleArray的处理保证了internalTitleArray一定非空
             currentPage = String.cycleCount * internalTitleArray!.count / 2
+        case .custom?:
+            break
+        case .none:
+            break
         }
         
         let indexPath = IndexPath(item: currentPage, section:0)
@@ -271,20 +315,16 @@ open class SCCycleScrollView: UIView {
         
         currentPage = currentPage + 1
         
-        let count = cellType == .mix ? internalImageArray!.count: internalTitleArray!.count
+        let count = (cellType == .mix || cellType == .image) ? internalImageArray!.count: internalTitleArray!.count
         switch scrollDirection {
         case .horizontal:
-            
             if collectionView.contentOffset.x == CGFloat(count * String.cycleCount - 1) * self.frame.size.width {
                 currentPage = currentPage / 2
             }
-            
         case .vertical:
-            
             if collectionView.contentOffset.y == CGFloat(count * String.cycleCount - 1) * self.frame.size.height {
                 currentPage = currentPage / 2
             }
-            
         }
         
         let indexPath = IndexPath(item: currentPage, section:0)
@@ -363,60 +403,77 @@ open class SCCycleScrollView: UIView {
 extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = cellType == .mix ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType == .mix || cellType == .image) ? (internalImageArray!.count) : (internalTitleArray!.count)
         return count * String.cycleCount
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .cycleScrollViewID, for: indexPath) as! SCCycleScrollViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .cycleScrollViewID, for: indexPath)
+        
+        let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:AtIndex:ForCycleScrollView:)))
+        let respondsValidation = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.validationChecking(ForCycleScrollView:)))
+        
+        var validationResult: AnyClass?
+        
+        if let respondsValidation = respondsValidation, respondsValidation {
+            validationResult = self.delegate?.validationChecking?(ForCycleScrollView: self)
+        }
+        
+        if let respondsConfigure = respondsConfigure,
+           let respondsValidation = respondsValidation,
+           let _ = validationResult, respondsConfigure && respondsValidation {
+            return cell
+        }
+        
+        let cycyleScrollViewCell = cell as! SCCycleScrollViewCell
         
         if let type = cellType {
             switch type {
             case .image:
                 
                 if let count = internalImageArray?.count, count > 0 {
-                    cell.image = internalImageArray?[indexPath.row % count] as? String
+                    cycyleScrollViewCell.image = internalImageArray?[indexPath.row % count] as? String
                 }
                 
             case .title:
                 
                 if let count = internalTitleArray?.count, count > 0 {
-                    cell.title = internalTitleArray?[indexPath.row % count]
+                    cycyleScrollViewCell.title = internalTitleArray?[indexPath.row % count]
                 }
                 
-                cell.titleFont = titleFont
-                cell.titleColor = titleColor
-                cell.titleLeftMargin = titleLeftMargin
-                cell.titleContainerAlpha = titleContainerAlpha
-                cell.titleContainerBackgroundColor = titleContainerBackgroundColor
+                cycyleScrollViewCell.titleFont = titleFont
+                cycyleScrollViewCell.titleColor = titleColor
+                cycyleScrollViewCell.titleLeftMargin = titleLeftMargin
+                cycyleScrollViewCell.titleContainerAlpha = titleContainerAlpha
+                cycyleScrollViewCell.titleContainerBackgroundColor = titleContainerBackgroundColor
                 
             case .mix:
-                cell.placeholderImage = placeholderImage
+                cycyleScrollViewCell.placeholderImage = placeholderImage
                 
                 if let count = internalImageArray?.count, count > 0 {
-                    cell.image = internalImageArray?[indexPath.row % count] as? String
-                    cell.title = internalTitleArray?[indexPath.row % count]
+                    cycyleScrollViewCell.image = internalImageArray?[indexPath.row % count] as? String
+                    cycyleScrollViewCell.title = internalTitleArray?[indexPath.row % count]
                 }
                 
-                cell.titleFont = titleFont
-                cell.titleColor = titleColor
-                cell.titleLeftMargin = titleLeftMargin
-                cell.titleContainerAlpha = titleContainerAlpha
-                cell.titleContainerBackgroundColor = titleContainerBackgroundColor
+                cycyleScrollViewCell.titleFont = titleFont
+                cycyleScrollViewCell.titleColor = titleColor
+                cycyleScrollViewCell.titleLeftMargin = titleLeftMargin
+                cycyleScrollViewCell.titleContainerAlpha = titleContainerAlpha
+                cycyleScrollViewCell.titleContainerBackgroundColor = titleContainerBackgroundColor
                 
             case .custom:
                 break
             }
             
-            cell.cellType = cellType
+            cycyleScrollViewCell.cellType = cellType
         }
         
-        return cell
+        return cycyleScrollViewCell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let count = cellType == .mix ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType == .mix || cellType == .image) ? (internalImageArray!.count) : (internalTitleArray!.count)
         delegate?.cycleScrollView?(self, didSelectItemAt: indexPath.row % count)
     }
 }
@@ -448,7 +505,7 @@ extension SCCycleScrollView: UIScrollViewDelegate {
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         
-        let count = cellType == .mix ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType == .mix || cellType == .image) ? (internalImageArray!.count) : (internalTitleArray!.count)
         
         ///.........为毛加个？
         delegate?.cycleScrollView?(self, didScroll2ItemAt: currentPage % count)
@@ -465,4 +522,8 @@ fileprivate extension String {
     @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didSelectItemAt index: Int)
     
     @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll2ItemAt index: Int)
+    
+    @objc optional func configureCollectionViewCell(cell: UICollectionViewCell, AtIndex index: NSInteger,  ForCycleScrollView: SCCycleScrollView)
+    
+    @objc optional func validationChecking(ForCycleScrollView: SCCycleScrollView) -> AnyClass?
 }
