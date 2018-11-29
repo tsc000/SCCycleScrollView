@@ -20,17 +20,17 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.lightGray
         
         var frame = CGRect(x: 0, y: 64, width: UIScreen.main.bounds.width, height: 200)
     
-//        scCycle1 = createImageScrollView(frame: frame)
+        scCycle1 = createImageScrollView(frame: frame)
         
-        frame = CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: 200)
+        frame = CGRect(x: 0, y: 274, width: UIScreen.main.bounds.width, height: 200)
         
-//        scCycle2 = createImageScrollView(frame: frame)
+        scCycle2 = createImageScrollView(frame: frame)
 
-//        createButton()
+        createButton()
         
         createImage()
         
@@ -40,7 +40,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
     //本地图片
     func createImage() {
         
-        let frame = CGRect(x: 0, y: 200, width: UIScreen.main.bounds.width, height: 200)
+        let frame = CGRect(x: 0, y: 484, width: UIScreen.main.bounds.width, height: 200)
         
         let placeholderImage = UIImage(named: "swift.jpeg")
         
@@ -53,10 +53,8 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
             "6.jpg"
             ] as [AnyObject]
         
-        scCycle3 = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, placeholderImage: placeholderImage)
-        scCycle3.delegate = self
+        scCycle3 = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, pageControlStyle: .classic ,placeholderImage: placeholderImage)
         scCycle3.imageArray = imageArray
-        
         scCycle3.scrollDirection = .vertical
         scCycle3.pageControlOrigin = CGPoint(x: (scCycle3.frame.width - scCycle3.pageControlSize.width) / 2.0, y: scCycle3.frame.height - scCycle3.pageControlSize.height - 10);
         
@@ -84,7 +82,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
             "轮播图持续维护中..."
         ]
         
-        let sccyleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, titleArray: nil, placeholderImage: placeholderImage)
+        let sccyleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: nil, imageArray: nil, titleArray: nil, placeholderImage: placeholderImage)
         
         sccyleScrollView.imageArray = imageArray as [AnyObject]
         
@@ -112,7 +110,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
         
         button.addTarget(self, action: #selector(buttonDidClick), for: .touchUpInside)
         
-        button.frame = CGRect(x: (view.frame.width - 40 ) / 2.0, y: 520, width: 40, height: 40)
+        button.frame = CGRect(x: (view.frame.width - 40 ) / 2.0, y: 700, width: 40, height: 40)
         
         view.addSubview(button)
     }
@@ -135,13 +133,13 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
                 "或发至邮箱：s787753577@163.com",
                 "轮播图持续维护中..."
             ]
-
+            scCycle2.pageControlOrigin = CGPoint(x: (scCycle2.frame.width - scCycle2.pageControlSize.width) / 2.0, y: scCycle2.frame.height - scCycle2.pageControlSize.height - 10 - 46);
             revert = false
         } else {
-            scCycle2.imageArray = ["https://cdn.pixabay.com/photo/2015/02/18/21/44/seeds-641520_960_720.jpg" as AnyObject]
- 
+            scCycle2.imageArray = ["http://t2.hddhhn.com/uploads/tu/20150700/v45jx3rpefz.jpg" as AnyObject]
+            scCycle2.isHiddenOnlyPage = false
             scCycle2.titleArray = []
-            
+            scCycle2.pageControlOrigin = CGPoint(x: (scCycle2.frame.width - scCycle2.pageControlSize.width) / 2.0, y: scCycle2.frame.height - scCycle2.pageControlSize.height - 10 - 46);
             revert = true
         }
         
@@ -150,12 +148,15 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
     
     
     
-    func configureCollectionViewCell(cell: UICollectionViewCell, AtIndex index: NSInteger, ForCycleScrollView: SCCycleScrollView) {
+    func configureCollectionViewCell(cell: UICollectionViewCell, atIndex index: NSInteger, for cycleScrollView: SCCycleScrollView) {
+        let customCell = cell as! CustomCollectionViewCell
+        
         
     }
-    
-    func validationChecking(ForCycleScrollView: SCCycleScrollView) -> AnyClass? {
+
+    func cellType(for cycleScrollView: SCCycleScrollView) -> AnyClass {
         return CustomCollectionViewCell.self
     }
+    
 
 }

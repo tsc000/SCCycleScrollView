@@ -23,11 +23,18 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
 
         title = "SCCycleScrollView轮播图"
  
+//        let vc = SecondViewController()
+//        navigationController?.pushViewController(vc, animated: false)
         createBackgroundView()
-        
-        let vc = SecondViewController()
-        navigationController?.pushViewController(vc, animated: false)
 
+        //图 + 文字
+        createImageScrollView()
+
+//        //本地图片
+        createImage()
+//
+//        //纯文字
+        createTitleScrollView()
 
     }
     
@@ -70,7 +77,6 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         
         [imageView, scrollView].forEach(view.addSubview(_:))
     }
-
     
     //图 + 文字
     private func createImageScrollView() {
