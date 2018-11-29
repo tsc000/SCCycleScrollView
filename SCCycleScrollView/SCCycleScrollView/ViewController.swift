@@ -15,6 +15,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
     private var sccyleScrollView: SCCycleScrollView!
     
     private var sccyleTitleScrollView: SCCycleScrollView!
+    private var pageControl: RoundedRectanglePageControl!
     
     private var revert: Bool = false
     
@@ -27,14 +28,14 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
 //        navigationController?.pushViewController(vc, animated: false)
         createBackgroundView()
 
-        //图 + 文字
-        createImageScrollView()
+//        //图 + 文字
+//        createImageScrollView()
 
 //        //本地图片
         createImage()
 //
 //        //纯文字
-        createTitleScrollView()
+//        createTitleScrollView()
 
     }
     
@@ -54,13 +55,21 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
             "6.jpg"
             ] as [AnyObject]
         
-        let cycleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, placeholderImage: placeholderImage)
+        let cycleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, pageControlStyle: .custom, placeholderImage: placeholderImage)
         
         cycleScrollView.imageArray = imageArray
         
         cycleScrollView.scrollDirection = .vertical
         cycleScrollView.pageControlOrigin = CGPoint(x: (cycleScrollView.frame.width - cycleScrollView.pageControlSize.width) / 2.0, y: cycleScrollView.frame.height - cycleScrollView.pageControlSize.height - 10);
         
+        pageControl = RoundedRectanglePageControl(frame: CGRect.null)
+        
+        
+        pageControl.frame = CGRect(x: 0, y: 0, width: 100, height: 30)
+        pageControl.backgroundColor = UIColor.orange
+
+        
+        cycleScrollView.addSubview(pageControl)
         scrollView.addSubview(cycleScrollView)
     }
     
@@ -169,6 +178,9 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         print("scroll: \(index)")
     }
     
+    func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll scrollView: UIScrollView, atIndex index: NSInteger) {
+        pageControl.currentPage = index
+    }
     
 }
 

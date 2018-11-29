@@ -100,9 +100,7 @@ open class SCCycleScrollView: UIView {
     open var imageArray: [AnyObject]? {
         didSet {
             
-            guard let cellType = cellType else {
-                return
-            }
+            guard let cellType = cellType else { return }
             
             switch cellType {
      
@@ -126,19 +124,6 @@ open class SCCycleScrollView: UIView {
                     configureInternalTitleArray()
                 }
             }
-//            if cellType == .title { return }
-//
-//            if let images = imageArray, images.count > 0 {
-//                if pageControlStyle == .classic {
-//                    pageControl.numberOfPages = images.count
-//                    pageControl.frame.size.width = pageControl.size(forNumberOfPages: pageControl.numberOfPages).width
-//                }
-//                internalImageArray = imageArray
-//            } else { //[] 或 nil
-//                internalImageArray = [""]  as [AnyObject]
-//            }
-//
-//            configureInternalTitleArray()
             setNeedsLayout()
             collectionView.reloadData()
         }
@@ -503,6 +488,7 @@ extension SCCycleScrollView: UIScrollViewDelegate {
             pageControl.currentPage = currentPage % count
         }
         
+        self.delegate?.cycleScrollView?(self, didScroll: scrollView, atIndex: currentPage)
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -533,6 +519,7 @@ fileprivate extension String {
     
     @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll2ItemAt index: Int)
     
+    @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll scrollView: UIScrollView, atIndex index: NSInteger)
     ///自定义cell配置方法
     @objc optional func configureCollectionViewCell(cell: UICollectionViewCell, atIndex index: NSInteger,  for cycleScrollView: SCCycleScrollView)
     
