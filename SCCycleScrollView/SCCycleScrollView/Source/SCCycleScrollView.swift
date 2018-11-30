@@ -242,7 +242,7 @@ open class SCCycleScrollView: UIView {
         
         currentPage = currentPage + 1
         
-        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? internalImageArray!.count: internalTitleArray!.count
+        let count = (cellType != .title) ? internalImageArray!.count: internalTitleArray!.count
         switch scrollDirection {
         case .horizontal:
             if collectionView.contentOffset.x == CGFloat(count * String.cycleCount - 1) * self.frame.size.width {
@@ -393,14 +393,14 @@ open class SCCycleScrollView: UIView {
     
     //MARK: - GET
     
-    private lazy var flowLayout: UICollectionViewFlowLayout! = {
+    private lazy var flowLayout: UICollectionViewFlowLayout = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
         return flowLayout
     }()
     
-    fileprivate lazy var collectionView: UICollectionView! = {
+    fileprivate lazy var collectionView: UICollectionView = {
         
         let collectionView = UICollectionView(frame: CGRect.null, collectionViewLayout: UICollectionViewLayout())
         collectionView.isPagingEnabled = true
@@ -415,7 +415,7 @@ open class SCCycleScrollView: UIView {
         return collectionView
     }()
     
-    fileprivate lazy var pageControl: UIPageControl! = {
+    fileprivate lazy var pageControl: UIPageControl = {
         let frame = CGRect(x: 0, y: 0, width: 0, height: 6)
         let pageControl = UIPageControl(frame: frame)
         pageControl.currentPageIndicatorTintColor = UIColor.white //默认指示器颜色
@@ -429,7 +429,7 @@ open class SCCycleScrollView: UIView {
 extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType != .title) ? (internalImageArray!.count) : (internalTitleArray!.count)
         return count * String.cycleCount
     }
     
@@ -480,7 +480,7 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType != .title) ? (internalImageArray!.count) : (internalTitleArray!.count)
         delegate?.cycleScrollView?(self, didSelectItemAt: indexPath.row % count)
     }
 }
@@ -518,9 +518,8 @@ extension SCCycleScrollView: UIScrollViewDelegate {
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         
-        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType != .title) ? (internalImageArray!.count) : (internalTitleArray!.count)
         
-        ///.........为毛加个？
         delegate?.cycleScrollView?(self, didScroll2ItemAt: currentPage % count)
     }
 }

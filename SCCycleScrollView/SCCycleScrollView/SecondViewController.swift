@@ -262,7 +262,6 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
         view.addSubview(cycleScrollView)
     }
     
-    
     //切换数据源
     @objc func createChangeImage() {
         
