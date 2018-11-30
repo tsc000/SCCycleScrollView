@@ -21,8 +21,18 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     private func initial() {
         imageView.frame = CGRect(x: 5, y: 5, width: self.frame.width - 10, height: self.frame.height - 10)
+        titleLabel.center = imageView.center
     }
  
+    private lazy var titleLabel: UILabel! = {
+        let titleLabel = UILabel()
+        titleLabel.text = "自定义ell"
+        titleLabel.textAlignment = .left
+        contentView.addSubview(titleLabel)
+        titleLabel.sizeToFit()
+        return titleLabel
+    }()
+    
     private lazy var imageView: UIImageView! = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.orange

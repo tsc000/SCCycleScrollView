@@ -92,6 +92,8 @@ class SCCycleScrollViewCell: UICollectionViewCell {
             bannerView.frame = CGRect(x: 0, y: self.frame.height - 40, width: self.frame.width, height: 40)
             imageView.frame = self.bounds
             titleLabel.frame = CGRect(x: titleLeftMargin ?? 0, y: bannerView.frame.origin.y, width: self.frame.width - (titleLeftMargin ?? 0), height: bannerView.frame.height)
+        default:
+            break
         }
         
     }

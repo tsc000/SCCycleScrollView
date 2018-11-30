@@ -12,18 +12,21 @@ public enum CycleScrollViewCellStyle: String{
     case image   = "图片"
     case title   = "文字"
     case mix     = "图片和文字"
+    case custom  = "自定义"
 }
 
 public enum CycleScrollViewPageControlStyle: String{
     case classic = "系统样式"
-    case custom  = "自定义"
     case none    = "无"
+    case custom  = "自定义"
 }
 
 open class SCCycleScrollView: UIView {
     
     //MARK: - SCCycleScrollView属性接口
     //>>>>>>>>>>>>>>>>>>>>>>  SCCycleScrollView属性接口 >>>>>>>>>>>>>>>>>>>>>>>>>>>
+    /// 占位图片
+    open var placeholderImage: UIImage?
     
     /// cell类型：图片类型和文字类型
     open var cellType: CycleScrollViewCellStyle?
@@ -106,7 +109,7 @@ open class SCCycleScrollView: UIView {
      
             case .title://如果是文字轮播，直接返回，防止出错
                 return
-            case .mix, .image:
+            case .mix, .image, .custom:
                 if let images = imageArray, images.count > 0 {
                     if pageControlStyle == .classic {
                         if images.count >= 2 {
@@ -154,8 +157,7 @@ open class SCCycleScrollView: UIView {
     
     //MARK: - 私有属性
     //////////////////////  私有属性  //////////////////////
-    
-    fileprivate var placeholderImage: UIImage?
+
     fileprivate var currentPage: Int = 0
     fileprivate var timer: Timer?
     fileprivate var internalImageArray: [AnyObject]?
@@ -196,7 +198,7 @@ open class SCCycleScrollView: UIView {
     ///   - titleArray: 文字数据源,默认值nil
     /// - Returns: 返回SCCycleScrollView对象
     open class func cycleScrollView(frame: CGRect,
-                                 delegate: SCCycleScrollViewDelegate,
+                                 delegate: SCCycleScrollViewDelegate?,
                                titleArray: [String]? = []) -> SCCycleScrollView {
         
         let cycleScrollView = SCCycleScrollView(frame: frame)
@@ -240,7 +242,7 @@ open class SCCycleScrollView: UIView {
         
         currentPage = currentPage + 1
         
-        let count = (cellType == .mix || cellType == .image) ? internalImageArray!.count: internalTitleArray!.count
+        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? internalImageArray!.count: internalTitleArray!.count
         switch scrollDirection {
         case .horizontal:
             if collectionView.contentOffset.x == CGFloat(count * String.cycleCount - 1) * self.frame.size.width {
@@ -262,7 +264,7 @@ open class SCCycleScrollView: UIView {
         let respondsValidation = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.cellType(for:)))
         let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:atIndex:for:)))
     
-        guard let _ = respondsConfigure, let _ = respondsValidation, let _ = validationResult else {
+        guard let _ = respondsConfigure, let _ = respondsValidation, let _ = validationResult, cellType == .custom else {
             return
         }
         self.collectionView.register(validationResult.self, forCellWithReuseIdentifier: .cycleScrollViewID)
@@ -273,7 +275,7 @@ open class SCCycleScrollView: UIView {
         flowLayout.scrollDirection = scrollDirection
         
         switch self.cellType {
-        case .image?, .mix?:
+        case .image?, .mix?, .custom?:
             //经过imageArray的处理保证了internalImageArray一定非空
             currentPage = String.cycleCount * internalImageArray!.count / 2
         case .title?:
@@ -310,7 +312,7 @@ open class SCCycleScrollView: UIView {
     }
     
     //配置cell
-    private func configureCell(cell: SCCycleScrollViewCell, atIndexPath indexPath: IndexPath,scrollViewStyle: CycleScrollViewCellStyle) {
+    private func configureCell(cell: SCCycleScrollViewCell, atIndexPath indexPath: IndexPath, scrollViewStyle: CycleScrollViewCellStyle) {
         if scrollViewStyle == .title {
             if let count = internalTitleArray?.count, count > 0 {
                 cell.title = internalTitleArray?[indexPath.row % count]
@@ -368,6 +370,11 @@ open class SCCycleScrollView: UIView {
                 configureCycleScrollView(scrollEnabled: false, pageHidden: isHiddenOnlyPage, timerBlock: invalidateTimer)
                 return
             }
+        case .custom?:
+            guard let count = internalImageArray?.count, count > 1 else {
+                configureCycleScrollView(scrollEnabled: false, pageHidden: isHiddenOnlyPage, timerBlock: invalidateTimer)
+                return
+            }
         case .none:
             break
         }
@@ -386,7 +393,7 @@ open class SCCycleScrollView: UIView {
     
     //MARK: - GET
     
-    private var flowLayout: UICollectionViewFlowLayout! = {
+    private lazy var flowLayout: UICollectionViewFlowLayout! = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
@@ -422,13 +429,14 @@ open class SCCycleScrollView: UIView {
 extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegate {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let count = (cellType == .mix || cellType == .image) ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? (internalImageArray!.count) : (internalTitleArray!.count)
         return count * String.cycleCount
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .cycleScrollViewID, for: indexPath)
+        
         
         let respondsConfigure = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.configureCollectionViewCell(cell:atIndex:for:)))
         let respondsValidation = self.delegate?.responds(to: #selector(SCCycleScrollViewDelegate.cellType(for:)))
@@ -441,7 +449,9 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
         
         if let respondsConfigure = respondsConfigure,
            let respondsValidation = respondsValidation,
-           let _ = validationResult, respondsConfigure && respondsValidation {
+           let _ = validationResult,
+           respondsConfigure && respondsValidation,
+           cellType == .custom {
             return cell
         }
         
@@ -459,6 +469,8 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
                 configureCell(cell: cycyleScrollViewCell, atIndexPath: indexPath, scrollViewStyle: type)
             case .mix:
                 configureCell(cell: cycyleScrollViewCell, atIndexPath: indexPath, scrollViewStyle: type)
+            default:
+                break
             }
             
             cycyleScrollViewCell.cellType = cellType
@@ -468,7 +480,7 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let count = (cellType == .mix || cellType == .image) ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? (internalImageArray!.count) : (internalTitleArray!.count)
         delegate?.cycleScrollView?(self, didSelectItemAt: indexPath.row % count)
     }
 }
@@ -484,11 +496,16 @@ extension SCCycleScrollView: UIScrollViewDelegate {
             currentPage = Int((scrollView.contentOffset.y + scrollView.frame.height / 2.0) / scrollView.frame.height)
         }
         
-        if let count = internalImageArray?.count, count > 0, pageControlStyle == .classic {
-            pageControl.currentPage = currentPage % count
+        guard let count = internalImageArray?.count, count > 0 else {
+            return
         }
         
-        self.delegate?.cycleScrollView?(self, didScroll: scrollView, atIndex: currentPage)
+        if pageControlStyle == .classic {
+            pageControl.currentPage = currentPage % count
+        } else if pageControlStyle == .custom {
+            self.delegate?.cycleScrollView?(self, didScroll: scrollView, atIndex: currentPage % count)
+        }
+        
     }
     
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -501,7 +518,7 @@ extension SCCycleScrollView: UIScrollViewDelegate {
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         
-        let count = (cellType == .mix || cellType == .image) ? (internalImageArray!.count) : (internalTitleArray!.count)
+        let count = (cellType == .mix || cellType == .image || cellType == .custom) ? (internalImageArray!.count) : (internalTitleArray!.count)
         
         ///.........为毛加个？
         delegate?.cycleScrollView?(self, didScroll2ItemAt: currentPage % count)
@@ -519,8 +536,12 @@ fileprivate extension String {
     
     @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll2ItemAt index: Int)
     
+    
+    //如果实现自定义pageControl实现此代理方法
     @objc optional func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll scrollView: UIScrollView, atIndex index: NSInteger)
-    ///自定义cell配置方法
+    
+    
+    //如果自定义cell需要实现下面两个代理方法
     @objc optional func configureCollectionViewCell(cell: UICollectionViewCell, atIndex index: NSInteger,  for cycleScrollView: SCCycleScrollView)
     
     @objc optional func cellType(for cycleScrollView: SCCycleScrollView) -> AnyClass
