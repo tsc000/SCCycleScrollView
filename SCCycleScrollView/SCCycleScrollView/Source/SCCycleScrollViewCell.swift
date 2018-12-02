@@ -29,7 +29,7 @@ class SCCycleScrollViewCell: UICollectionViewCell {
     
     var titleLeftMargin: CGFloat? {
         didSet {
-            titleLabel.frame.origin.x = titleLeftMargin!
+            titleLabel.frame.origin.x = titleLeftMargin ?? 0
         }
     }
     
@@ -65,7 +65,7 @@ class SCCycleScrollViewCell: UICollectionViewCell {
                 //网络图片
                 if imageString.contains("http") {
                     let url = URL(string: imageString)
-                    imageView?.kf.setImage(with: url, placeholder: placeholderImage)
+                    imageView.kf.setImage(with: url, placeholder: placeholderImage)
                 } else { //其它图片（暂指本地图片）
                     imageView.image = UIImage(named: imageString)
                 }
@@ -113,7 +113,7 @@ class SCCycleScrollViewCell: UICollectionViewCell {
     
     //MARK: - GET
     
-    private lazy var bannerView: UIView! = {
+    private lazy var bannerView: UIView = {
         let bannerView = UIView()
         bannerView.backgroundColor = UIColor.black
         bannerView.alpha = 0.5
@@ -121,14 +121,14 @@ class SCCycleScrollViewCell: UICollectionViewCell {
         return bannerView
     }()
     
-    private lazy var titleLabel: UILabel! = {
+    private lazy var titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textAlignment = .left
         contentView.addSubview(titleLabel)
         return titleLabel
     }()
     
-    private lazy var imageView: UIImageView! = {
+    private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         contentView.addSubview(imageView)
         return imageView
