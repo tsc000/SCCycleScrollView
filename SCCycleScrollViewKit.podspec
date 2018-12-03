@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.framework  = 'UIKit'
   s.requires_arc = true
   s.dependency "Kingfisher"
+  s.swift_version = '4.2'
 
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 end
