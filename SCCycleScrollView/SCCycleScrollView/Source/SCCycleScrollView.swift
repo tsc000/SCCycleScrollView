@@ -465,10 +465,10 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
         if let type = cellType {
             switch type {
             case .image:
+                cycyleScrollViewCell.placeholderImage = placeholderImage
                 if let count = internalImageArray?.count, count > 0 {
                     cycyleScrollViewCell.image = internalImageArray?[indexPath.row % count]
                 }
-                cycyleScrollViewCell.placeholderImage = placeholderImage
             case .title:
                 configureCell(cell: cycyleScrollViewCell, atIndexPath: indexPath, scrollViewStyle: type)
             case .mix:

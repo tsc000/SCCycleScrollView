@@ -390,7 +390,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
             scCycle2.pageControlOrigin = CGPoint(x: (scCycle2.frame.width - scCycle2.pageControlSize.width) / 2.0, y: scCycle2.frame.height - scCycle2.pageControlSize.height - 10 );
             revert = false
         } else {
-            scCycle2.imageArray = ["" as AnyObject]
+            scCycle2.imageArray = ["http://zhsq2dev.loganwy.com/upload/ads/C3D058A0-10CD-DA2B-5947-EF7B9203FBF3/20181130/cc4e01b1db02fd4c63688beac97dd2ef.jpg"]
             scCycle2.isHiddenOnlyPage = false
             scCycle2.titleArray = []
             scCycle2.pageControlOrigin = CGPoint(x: (scCycle2.frame.width - scCycle2.pageControlSize.width) / 2.0, y: scCycle2.frame.height - scCycle2.pageControlSize.height - 10 );
