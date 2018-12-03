@@ -42,7 +42,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
             "https://cdn.pixabay.com/photo/2016/07/16/13/50/sun-flower-1521851_960_720.jpg",
             "https://cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
             "http://t2.hddhhn.com/uploads/tu/201707/535/104.jpg",
-            "http://t2.hddhhn.com/uploads/tu/201707/30/46.jpg"
+            UIImage(named: "1.jpg")
             ] as [AnyObject]
         
         let titleArray = [
@@ -85,7 +85,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
             "https://cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
             "http://t2.hddhhn.com/uploads/tu/201707/535/104.jpg",
             "http://t2.hddhhn.com/uploads/tu/201707/30/46.jpg"
-            ] as [AnyObject]
+            ]
     
         let sccyleScrollView1 = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, titleArray: nil, pageControlStyle:. custom, placeholderImage: placeholderImage)
         

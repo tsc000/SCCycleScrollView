@@ -100,7 +100,7 @@ open class SCCycleScrollView: UIView {
     //>>>>>>>>>>>>>>>>>>>>>>  数据源 >>>>>>>>>>>>>>>>>>>>>>>>>>>
     
     /// 图片数据源
-    open var imageArray: [AnyObject]? {
+    open var imageArray: [Any]? {
         didSet {
             
             guard let cellType = cellType else { return }
@@ -121,6 +121,8 @@ open class SCCycleScrollView: UIView {
                     internalImageArray = imageArray
                 } else { //[] 或 nil
                     internalImageArray = [""]  as [AnyObject]
+                    pageControl.numberOfPages = 1
+                    pageControl.frame.size.width = pageControl.size(forNumberOfPages: pageControl.numberOfPages).width
                 }
                 
                 if cellType == .mix {
@@ -160,7 +162,7 @@ open class SCCycleScrollView: UIView {
 
     fileprivate var currentPage: Int = 0
     fileprivate var timer: Timer?
-    fileprivate var internalImageArray: [AnyObject]?
+    fileprivate var internalImageArray: [Any]?
     fileprivate var internalTitleArray: [String]?
     
     //MARK: - 方法
@@ -321,7 +323,7 @@ open class SCCycleScrollView: UIView {
         } else if scrollViewStyle == .mix {
             cell.placeholderImage = placeholderImage
             if let count = internalImageArray?.count, count > 0 {
-                cell.image = internalImageArray?[indexPath.row % count] as? String
+                cell.image = internalImageArray?[indexPath.row % count]
                 cell.title = internalTitleArray?[indexPath.row % count]
             }
         }
@@ -464,8 +466,9 @@ extension SCCycleScrollView: UICollectionViewDataSource, UICollectionViewDelegat
             switch type {
             case .image:
                 if let count = internalImageArray?.count, count > 0 {
-                    cycyleScrollViewCell.image = internalImageArray?[indexPath.row % count] as? String
+                    cycyleScrollViewCell.image = internalImageArray?[indexPath.row % count]
                 }
+                cycyleScrollViewCell.placeholderImage = placeholderImage
             case .title:
                 configureCell(cell: cycyleScrollViewCell, atIndexPath: indexPath, scrollViewStyle: type)
             case .mix:

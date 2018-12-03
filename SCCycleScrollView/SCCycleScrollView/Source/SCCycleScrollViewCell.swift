@@ -57,19 +57,29 @@ class SCCycleScrollViewCell: UICollectionViewCell {
         }
     }
     
-    var image: String? {
+    var image: Any? {
         didSet {
+
+            guard let imageObj = image else {
+                imageView.image = placeholderImage
+                return
+            }
             
-            if let imageString = image, !imageString.isEmpty {
+            if imageObj is String {
                 
-                //网络图片
-                if imageString.contains("http") {
+                let imageString = imageObj as! String
+                
+                if imageString.contains("http") { //网络图片
                     let url = URL(string: imageString)
                     imageView.kf.setImage(with: url, placeholder: placeholderImage)
-                } else { //其它图片（暂指本地图片）
-                    imageView.image = UIImage(named: imageString)
+                } else if !imageString.isEmpty, let image = UIImage(named: imageString) { //其它图片（暂指本地图片）
+                    imageView.image = image
+                } else {
+                    imageView.image = placeholderImage
                 }
                 
+            } else if imageObj is UIImage {
+                imageView.image = imageObj as? UIImage
             } else {
                 imageView.image = placeholderImage
             }

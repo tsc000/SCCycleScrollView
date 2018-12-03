@@ -390,7 +390,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
             scCycle2.pageControlOrigin = CGPoint(x: (scCycle2.frame.width - scCycle2.pageControlSize.width) / 2.0, y: scCycle2.frame.height - scCycle2.pageControlSize.height - 10 );
             revert = false
         } else {
-            scCycle2.imageArray = ["http://t2.hddhhn.com/uploads/tu/20150700/v45jx3rpefz.jpg" as AnyObject]
+            scCycle2.imageArray = ["" as AnyObject]
             scCycle2.isHiddenOnlyPage = false
             scCycle2.titleArray = []
             scCycle2.pageControlOrigin = CGPoint(x: (scCycle2.frame.width - scCycle2.pageControlSize.width) / 2.0, y: scCycle2.frame.height - scCycle2.pageControlSize.height - 10 );
@@ -402,7 +402,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
 
     //下面两个是处定义cell代理
     func configureCollectionViewCell(cell: UICollectionViewCell, atIndex index: NSInteger, for cycleScrollView: SCCycleScrollView) {
-        let customCell = cell as! CustomCollectionViewCell
+        let _ = cell as! CustomCollectionViewCell
         
         
     }
