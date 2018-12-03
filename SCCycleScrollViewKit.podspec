@@ -16,5 +16,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.dependency "Kingfisher"
 
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 end
