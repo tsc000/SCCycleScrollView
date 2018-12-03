@@ -1,20 +1,16 @@
 //
-//  RoundedRectanglePageControl.swift
+//  MergeRectanglePageControl.swift
 //  SCCycleScrollView
 //
-//  Created by tongshichao on 2018/11/29.
+//  Created by tongshichao on 2018/12/3.
 //  Copyright © 2018 童世超. All rights reserved.
 //
 
 import UIKit
 
-class RoundedRectanglePageControl: UIView {
+class MergeRectanglePageControl: UIView {
 
-    var numberOfPages: NSInteger = 0 {
-        didSet {
-            
-        }
-    }
+    var numberOfPages: NSInteger = 0
     
     var currentPage: NSInteger = 0 {
         didSet {
@@ -24,29 +20,30 @@ class RoundedRectanglePageControl: UIView {
     }
     
     var pageIndicatorColor: UIColor = UIColor.white
-    var currentPageIndicatorColor: UIColor = UIColor.lightGray
-    var minimumInteritemSpacing: CGFloat = 10
-    var pageHeight: CGFloat = 10
-    var currentPageWidth: CGFloat = 20
+    var currentPageIndicatorColor: UIColor = UIColor.white
+    var minimumInteritemSpacing: CGFloat = 8
+    var pageHeight: CGFloat = 5
+    var currentPageWidth: CGFloat = 12
     
     private func setupSubviews() {
-
-        var lastView: UIView = UIView()
-        for i in 0..<numberOfPages {
         
-            var width = pageHeight
+        var lastView: UIView = UIView()
+        
+        let width = CGFloat(currentPage) * (currentPageWidth + minimumInteritemSpacing) + currentPageWidth
+        let frame1 = CGRect(x: 0, y: 0, width: width, height: pageHeight)
+        let firstView = setupDotView(frame: frame1, tag: 0 + 1000, backgroundColor: pageIndicatorColor)
+        addSubview(firstView)
+        for i in (currentPage + 1)..<numberOfPages {
+            
             var x: CGFloat = 0
-            if i == currentPage {
-                width = currentPageWidth
-            }
-
-            if i == 0 {
-                x = lastView.frame.maxX
+            
+            if i == currentPage + 1 {
+                x = firstView.frame.maxX + minimumInteritemSpacing
             } else {
                 x = lastView.frame.maxX + minimumInteritemSpacing
             }
             
-            let frame = CGRect(x: x, y: 0, width: width, height: pageHeight)
+            let frame = CGRect(x: x, y: 0, width: currentPageWidth, height: pageHeight)
             
             let view = setupDotView(frame: frame, tag: i + 1000, backgroundColor: pageIndicatorColor)
             if i == currentPage {
@@ -55,7 +52,7 @@ class RoundedRectanglePageControl: UIView {
             lastView = view
             addSubview(view)
         }
-        frame.size = CGSize(width: CGFloat(numberOfPages - 1) * (pageHeight + minimumInteritemSpacing) + currentPageWidth, height: pageHeight)
+        frame.size = CGSize(width: CGFloat(numberOfPages - 1) * (currentPageWidth + minimumInteritemSpacing) + currentPageWidth, height: pageHeight)
     }
     
     private func removeSubviews() {
@@ -82,5 +79,6 @@ class RoundedRectanglePageControl: UIView {
         dotView.backgroundColor = backgroundColor
         return dotView
     }
-    
+
+
 }

@@ -22,6 +22,8 @@
 		B2EA6C81C1DA729ECF9CA1C8 /* Pods_SCCycleScrollView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC6909A00FDCC62D75C98DA /* Pods_SCCycleScrollView.framework */; };
 		E72246DC21B11057001C4098 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72246D921B11057001C4098 /* CustomCollectionViewCell.swift */; };
 		E72246DD21B11057001C4098 /* RoundedRectanglePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72246DB21B11057001C4098 /* RoundedRectanglePageControl.swift */; };
+		E72246E121B4C6D4001C4098 /* RectanglePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72246E021B4C6D4001C4098 /* RectanglePageControl.swift */; };
+		E72246E321B4D066001C4098 /* MergeRectanglePageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72246E221B4D066001C4098 /* MergeRectanglePageControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		E72246CF21AF8EA2001C4098 /* SCCycleScrollView-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SCCycleScrollView-Bridging-Header.h"; sourceTree = "<group>"; };
 		E72246D921B11057001C4098 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		E72246DB21B11057001C4098 /* RoundedRectanglePageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedRectanglePageControl.swift; sourceTree = "<group>"; };
+		E72246E021B4C6D4001C4098 /* RectanglePageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RectanglePageControl.swift; sourceTree = "<group>"; };
+		E72246E221B4D066001C4098 /* MergeRectanglePageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MergeRectanglePageControl.swift; sourceTree = "<group>"; };
 		EA51B191F80E02E7E984764B /* Pods-SCCycleScrollView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCCycleScrollView.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCCycleScrollView/Pods-SCCycleScrollView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -201,7 +205,9 @@
 		E72246DA21B11057001C4098 /* PageControl */ = {
 			isa = PBXGroup;
 			children = (
+				E72246E021B4C6D4001C4098 /* RectanglePageControl.swift */,
 				E72246DB21B11057001C4098 /* RoundedRectanglePageControl.swift */,
+				E72246E221B4D066001C4098 /* MergeRectanglePageControl.swift */,
 			);
 			path = PageControl;
 			sourceTree = "<group>";
@@ -283,7 +289,7 @@
 				TargetAttributes = {
 					595400ED1EF76C670072C103 = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = SP9H6353S3;
+						DevelopmentTeam = D2M5X57582;
 						LastSwiftMigration = 1000;
 						ProvisioningStyle = Automatic;
 					};
@@ -493,6 +499,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E72246E121B4C6D4001C4098 /* RectanglePageControl.swift in Sources */,
 				E72246DD21B11057001C4098 /* RoundedRectanglePageControl.swift in Sources */,
 				595400F41EF76C670072C103 /* ViewController.swift in Sources */,
 				E72246DC21B11057001C4098 /* CustomCollectionViewCell.swift in Sources */,
@@ -500,6 +507,7 @@
 				595401531EF773EB0072C103 /* SCCycleScrollViewCell.swift in Sources */,
 				59DD17CA1EFA71280006B52A /* SecondViewController.swift in Sources */,
 				595401511EF773D10072C103 /* SCCycleScrollView.swift in Sources */,
+				E72246E321B4D066001C4098 /* MergeRectanglePageControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,7 +663,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SP9H6353S3;
+				DEVELOPMENT_TEAM = D2M5X57582;
 				INFOPLIST_FILE = SCCycleScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tsc000;
@@ -675,7 +683,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SP9H6353S3;
+				DEVELOPMENT_TEAM = D2M5X57582;
 				INFOPLIST_FILE = SCCycleScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tsc000;

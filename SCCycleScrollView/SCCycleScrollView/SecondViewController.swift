@@ -20,6 +20,8 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
     private var scCycle3: SCCycleScrollView!
 
     private var pageControl: RoundedRectanglePageControl!
+    private var rPageControl: RectanglePageControl!
+    private var mPageControl: MergeRectanglePageControl!
     
     private var revert: Bool = false
     
@@ -29,7 +31,8 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
         view.backgroundColor = UIColor.lightGray
         
         let methodString = ["createImageScrollView", "createNetImage", "createImage", "createTitleScrollView",
-                            "createCustomCellScrollView", "createCustomPagecontrol", "createCustomPagecontrolAndCell", "createChangeImage"
+                            "createCustomCellScrollView", "createCustomPagecontrol", "createCustomPagecontrolAndCell", "createChangeImage",
+                            "createTmallImage", "createJingdongImage"
                             ]
         let selector = Selector(methodString[injectedTag - 1000])
         perform(selector)
@@ -225,7 +228,7 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
          cycleScrollView.pageControlOrigin = CGPoint(x: (cycleScrollView.frame.width - cycleScrollView.pageControlSize.width) / 2.0, y: cycleScrollView.frame.height - cycleScrollView.pageControlSize.height - 10);
          
          pageControl = RoundedRectanglePageControl(frame: CGRect.null)
-         pageControl.backgroundColor = UIColor.clear
+//         pageControl.backgroundColor = UIColor.clear
          pageControl.numberOfPages = imageArray.count
          pageControl.currentPageWidth = 40
          cycleScrollView.addSubview(pageControl)
@@ -288,6 +291,70 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
         createButton()
     }
     
+    
+    //天猫
+    @objc func createTmallImage() {
+        
+        let frame = CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: 200)
+        
+        let placeholderImage = UIImage(named: "swift.jpeg")
+        
+        let imageArray = [
+            "https:cdn.pixabay.com/photo/2016/07/16/13/50/sun-flower-1521851_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2016/10/03/17/11/cosmos-flower-1712177_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2015/06/13/19/00/dandelion-808255_960_720.jpg"
+            ] as [AnyObject]
+        
+        let cycleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, pageControlStyle: .custom, placeholderImage: placeholderImage)
+        
+        cycleScrollView.imageArray = imageArray
+        cycleScrollView.center = view.center
+        cycleScrollView.scrollDirection = .horizontal
+        cycleScrollView.pageControlOrigin = CGPoint(x: (cycleScrollView.frame.width - cycleScrollView.pageControlSize.width) / 2.0, y: cycleScrollView.frame.height - cycleScrollView.pageControlSize.height - 10);
+        
+        rPageControl = RectanglePageControl(frame: CGRect.null)
+
+        rPageControl.numberOfPages = imageArray.count
+        rPageControl.currentPageWidth = 17
+        rPageControl.minimumInteritemSpacing = 3
+        rPageControl.pageHeight = 3
+        
+        cycleScrollView.addSubview(rPageControl)
+        view.addSubview(cycleScrollView)
+    }
+    
+    //京东
+    @objc func createJingdongImage() {
+        
+        let frame = CGRect(x: 0, y: 300, width: UIScreen.main.bounds.width, height: 200)
+        
+        let placeholderImage = UIImage(named: "swift.jpeg")
+        
+        let imageArray = [
+            "https:cdn.pixabay.com/photo/2016/07/16/13/50/sun-flower-1521851_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2016/10/03/17/11/cosmos-flower-1712177_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2015/06/13/19/00/dandelion-808255_960_720.jpg"
+            ] as [AnyObject]
+        
+        let cycleScrollView = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, pageControlStyle: .custom, placeholderImage: placeholderImage)
+        
+        cycleScrollView.imageArray = imageArray
+        cycleScrollView.center = view.center
+        cycleScrollView.scrollDirection = .horizontal
+        
+        mPageControl = MergeRectanglePageControl(frame: CGRect.null)
+        
+        mPageControl.numberOfPages = imageArray.count
+//        mPageControl.currentPageWidth = 17
+//        mPageControl.minimumInteritemSpacing = 3
+//        mPageControl.pageHeight = 3
+        
+        cycleScrollView.addSubview(mPageControl)
+        view.addSubview(cycleScrollView)
+    }
+    
     private func createButton() {
         let button = UIButton()
         
@@ -346,8 +413,21 @@ class SecondViewController: UIViewController, SCCycleScrollViewDelegate {
     
     //下面自定义Pagecontrol代理
     func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll scrollView: UIScrollView, atIndex index: NSInteger) {
-        pageControl.currentPage = index
         
-        pageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - pageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 20 - pageControl.pageHeight)
+        if pageControl != nil {
+            pageControl.currentPage = index
+            
+            pageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - pageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 20 - pageControl.pageHeight)
+        } else if rPageControl != nil {
+            
+            rPageControl.currentPage = index
+            
+            rPageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - rPageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 10 - rPageControl.pageHeight)
+        } else {
+            mPageControl.currentPage = index
+            
+            mPageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - mPageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 10 - mPageControl.pageHeight)
+        }
+        
     }
 }

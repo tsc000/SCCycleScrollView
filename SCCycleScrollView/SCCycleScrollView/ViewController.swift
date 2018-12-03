@@ -13,7 +13,12 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
     private var scrollView: UIScrollView!
     
     private var pageControl: RoundedRectanglePageControl!
+    private var rPageControl: RectanglePageControl!
+    private var mPageControl: MergeRectanglePageControl!
+    
     private var sccyleScrollView: SCCycleScrollView!
+    private var sccyleScrollView1: SCCycleScrollView!
+    private var sccyleScrollView2: SCCycleScrollView!
     
     private var revert: Bool = false
     
@@ -24,6 +29,8 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
 
         createBackgroundView()
         createImageScrollView()
+        createTmallScrollView()
+        createJingdongImage()
     }
     
     @objc private func createImageScrollView() {
@@ -34,8 +41,8 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         let imageArray = [
             "https://cdn.pixabay.com/photo/2016/07/16/13/50/sun-flower-1521851_960_720.jpg",
             "https://cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
-            "https://cdn.pixabay.com/photo/2016/10/03/17/11/cosmos-flower-1712177_960_720.jpg",
-            "https://cdn.pixabay.com/photo/2015/06/13/19/00/dandelion-808255_960_720.jpg"
+            "http://t2.hddhhn.com/uploads/tu/201707/535/104.jpg",
+            "http://t2.hddhhn.com/uploads/tu/201707/30/46.jpg"
             ] as [AnyObject]
         
         let titleArray = [
@@ -59,14 +66,69 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         self.sccyleScrollView = sccyleScrollView
         
         pageControl = RoundedRectanglePageControl(frame: CGRect.null)
-        pageControl.backgroundColor = UIColor.clear
         pageControl.numberOfPages = imageArray.count
         pageControl.currentPageWidth = 40
+        pageControl.currentPageIndicatorColor = UIColor.red
+        pageControl.minimumInteritemSpacing = 10
         sccyleScrollView.addSubview(pageControl)
-        
-        sccyleScrollView.pageControlOrigin = CGPoint(x: (sccyleScrollView.frame.width - sccyleScrollView.pageControlSize.width) / 2.0, y: sccyleScrollView.frame.height - 40 - sccyleScrollView.pageControlSize.height - 6);
-        
+    
         scrollView.addSubview(sccyleScrollView)
+    }
+    
+    @objc private func createTmallScrollView() {
+        let frame = CGRect(x: 0, y: sccyleScrollView.frame.maxY + 10, width: UIScreen.main.bounds.width, height: 200)
+        
+        let placeholderImage = UIImage(named: "swift.jpeg")
+        
+        let imageArray = [
+            "https://cdn.pixabay.com/photo/2016/07/16/13/50/sun-flower-1521851_960_720.jpg",
+            "https://cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
+            "http://t2.hddhhn.com/uploads/tu/201707/535/104.jpg",
+            "http://t2.hddhhn.com/uploads/tu/201707/30/46.jpg"
+            ] as [AnyObject]
+    
+        let sccyleScrollView1 = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, titleArray: nil, pageControlStyle:. custom, placeholderImage: placeholderImage)
+        
+        sccyleScrollView1.imageArray = imageArray as [AnyObject]
+        
+        self.sccyleScrollView1 = sccyleScrollView1
+        
+        rPageControl = RectanglePageControl(frame: CGRect.null)
+        rPageControl.numberOfPages = imageArray.count
+        
+        rPageControl.currentPageWidth = 17
+        rPageControl.minimumInteritemSpacing = 3
+        rPageControl.pageHeight = 3
+        
+        sccyleScrollView1.addSubview(rPageControl)
+        
+        scrollView.addSubview(sccyleScrollView1)
+    }
+    
+    //京东
+    @objc func createJingdongImage() {
+        
+        let frame = CGRect(x: 0, y: sccyleScrollView1.frame.maxY + 10, width: UIScreen.main.bounds.width, height: 200)
+        
+        let placeholderImage = UIImage(named: "swift.jpeg")
+        
+        let imageArray = [
+            "https:cdn.pixabay.com/photo/2016/07/16/13/50/sun-flower-1521851_960_720.jpg",
+            "https:cdn.pixabay.com/photo/2014/08/11/23/10/bud-416110_960_720.jpg",
+            "http://t2.hddhhn.com/uploads/tu/201707/535/104.jpg",
+            "http://t2.hddhhn.com/uploads/tu/201707/30/46.jpg"
+            ] as [AnyObject]
+        
+        let sccyleScrollView2 = SCCycleScrollView.cycleScrollView(frame: frame, delegate: self, imageArray: nil, pageControlStyle: .custom, placeholderImage: placeholderImage)
+        
+        sccyleScrollView2.imageArray = imageArray
+        sccyleScrollView2.scrollDirection = .horizontal
+        
+        mPageControl = MergeRectanglePageControl(frame: CGRect.null)
+        mPageControl.numberOfPages = imageArray.count
+
+        sccyleScrollView2.addSubview(mPageControl)
+        scrollView.addSubview(sccyleScrollView2)
     }
     
     private func createBackgroundView() {
@@ -83,7 +145,8 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
         [imageView, scrollView].forEach(view.addSubview(_:))
         
         let titleArray = ["图+文字", "网络图", "本地图", "纯文字",
-                          "自定义cell", "自定义指示器", "全部自定义", "数据源切换"
+                          "自定义cell", "自定义指示器", "全部自定义", "数据源切换",
+                          "天猫PageControl", "京东PageControl"
                           ]
         
         let width: CGFloat = UIScreen.main.bounds.size.width / 4.0 - 5
@@ -93,7 +156,6 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
             let y: CGFloat = CGFloat(i / 4) * (40 + 5) + 70
             createButton(tag: 1000 + i, frame: CGRect(x: x, y: y, width: width, height: 40), title: titleArray[i])
         }
-        
         
     }
     
@@ -123,7 +185,7 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
     
     //MARK: - SCCycleScrollViewDelegate
     func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didSelectItemAt index: Int) {
-        navigationController?.pushViewController(SecondViewController(), animated: true)
+//        navigationController?.pushViewController(SecondViewController(), animated: true)
     }
     
     func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll2ItemAt index: Int) {
@@ -131,9 +193,22 @@ class ViewController: UIViewController, SCCycleScrollViewDelegate {
     }
     
     func cycleScrollView(_ cycleScrollView: SCCycleScrollView, didScroll scrollView: UIScrollView, atIndex index: NSInteger) {
-        pageControl.currentPage = index
         
-        pageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - pageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 50 - pageControl.pageHeight)
+        if cycleScrollView == sccyleScrollView {
+            pageControl.currentPage = index
+            
+            pageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - pageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 50 - pageControl.pageHeight)
+        } else if cycleScrollView == sccyleScrollView1 {
+            
+            rPageControl.currentPage = index
+            
+            rPageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - rPageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 10 - rPageControl.pageHeight)
+        } else {
+            mPageControl.currentPage = index
+            
+            mPageControl.frame.origin = CGPoint(x: (cycleScrollView.frame.width - mPageControl.frame.width) / 2.0, y: cycleScrollView.frame.height - 10 - mPageControl.pageHeight)
+        }
+
     }
     
 }
